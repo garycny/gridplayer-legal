@@ -1,103 +1,370 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grid Player Terms of Service 用户协议</title>
-<style>
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-    line-height: 1.7;
-}
-h1, h2 { color: #0b2b38; margin-top: 28px; }
-p { margin: 8px 0; }
-ul { padding-left: 20px; }
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-td, th {
-    border: 1px solid #ccc;
-    padding: 8px;
-}
-.en { color: #555; }
-.cn { margin-top: 4px; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms of Service / 用户协议</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f7f8fa;
+      --fg: #15171a;
+      --muted: #667085;
+      --card: #ffffff;
+      --line: #e6e8ec;
+      --accent: #2f80ed;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #101114;
+        --fg: #f2f4f7;
+        --muted: #a0a7b2;
+        --card: #191b20;
+        --line: #2a2e36;
+        --accent: #6aa6ff;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 18px 56px;
+    }
+
+    header,
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 22px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--fg);
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      font-weight: 700;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .label {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      margin-top: 0;
+    }
+
+    .english-section,
+    .chinese-section {
+      margin-bottom: 20px;
+    }
+
+    .english-section:last-child,
+    .chinese-section:last-child {
+      margin-bottom: 0;
+    }
+
+    hr {
+      margin: 16px 0;
+      border: 0;
+      height: 1px;
+      background: var(--line);
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 18px 12px 40px;
+      }
+
+      header,
+      section {
+        border-radius: 12px;
+        padding: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <main>
+    <header>
+      <h1>Terms of Service / 用户协议</h1>
+      <p class="muted">Last Updated: May 5, 2026</p>
+      <p class="muted">最后更新日期：2026年5月5日</p>
+    </header>
 
-<h1>Terms of Service / 用户协议</h1>
-<p class="en">Last Updated: April 26, 2026</p>
-<p class="cn">最后更新日期：2026年4月26日</p>
+    <section>
+      <h2>1. Acceptance / 接受条款</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>By downloading, installing, accessing, or using Grid Player, you agree to be bound by these Terms of Service. If you do not agree, please stop using the app.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>当您下载、安装、访问或使用 Grid Player 时，即表示您同意受本用户协议约束。如果您不同意本协议，请停止使用本应用。</p>
+      </div>
+    </section>
 
-<h2>1. Acceptance / 接受条款</h2>
-<p class="en">By using Grid Player, you agree to these terms.</p>
-<p class="cn">使用本应用即表示您同意本协议。</p>
+    <section>
+      <h2>2. Service Description / 服务描述</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>Grid Player is a music player and library management app. Depending on the features available in your version, the app may allow you to:</p>
+        <ul>
+          <li>Play and manage local music files on your device.</li>
+          <li>Connect to personal media servers, including WebDAV, SMB, Emby, Jellyfin, Navidrome, Subsonic-compatible servers, and other supported services.</li>
+          <li>Manage playlists, favorites, recently played songs, albums, artists, covers, and related music metadata.</li>
+          <li>Cache or download music for offline playback when supported by your selected source.</li>
+        </ul>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>Grid Player 是一款音乐播放与资料库管理应用。根据您所使用版本提供的功能，本应用可能允许您：</p>
+        <ul>
+          <li>播放并管理设备上的本地音乐文件。</li>
+          <li>连接个人媒体服务器，包括 WebDAV、SMB、Emby、Jellyfin、Navidrome、Subsonic 兼容服务器及其他支持的服务。</li>
+          <li>管理歌单、收藏、最近播放、专辑、艺术家、封面及相关音乐元数据。</li>
+          <li>在所选音乐来源支持的情况下缓存或下载音乐用于离线播放。</li>
+        </ul>
+      </div>
+    </section>
 
-<h2>2. Service Description / 服务描述</h2>
-<ul>
-<li class="en">Play local music</li>
-<li class="cn">播放本地音乐</li>
+    <section>
+      <h2>3. Account, Server Credentials, and User Content / 账号、服务器凭据与用户内容</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>You are responsible for the accuracy and legality of any server address, username, password, token, file, playlist, cover image, or other content you add to the app. You must have the necessary rights to access and play any music or media content through Grid Player.</p>
+        <p>The app may store configuration information and server credentials locally on your device to provide connection and playback features. Please keep your device and server accounts secure.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>您应对在本应用中添加的服务器地址、用户名、密码、令牌、文件、歌单、封面图片或其他内容的准确性与合法性负责。您必须拥有通过 Grid Player 访问和播放相关音乐或媒体内容所需的权利。</p>
+        <p>为提供连接和播放功能，本应用可能会在您的设备本地保存配置信息及服务器凭据。请妥善保护您的设备和服务器账号安全。</p>
+      </div>
+    </section>
 
-<li class="en">Connect WebDAV / SMB servers</li>
-<li class="cn">连接 WebDAV / SMB 服务器</li>
+    <section>
+      <h2>4. Subscription and Lifetime Purchase / 订阅与买断</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>Grid Player may offer paid features through auto-renewable subscriptions or a one-time lifetime purchase. The actual product names, prices, trial availability, and benefits will be shown in the app and on the Apple App Store purchase sheet before you confirm payment.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>Grid Player 未来可能通过自动续期订阅或一次性买断提供付费功能。实际产品名称、价格、试用资格及权益内容，将在您确认付款前显示于应用内页面及 Apple App Store 购买确认页。</p>
+      </div>
 
-<li class="en">Manage playlists and favorites</li>
-<li class="cn">管理歌单与收藏</li>
-</ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Type / 类型</th>
+            <th>Price / 价格</th>
+            <th>Description / 说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly / 月度订阅</td>
+            <td>Displayed in App Store / 以 App Store 显示为准</td>
+            <td>Auto-renewable subscription / 自动续期订阅</td>
+          </tr>
+          <tr>
+            <td>Yearly / 年度订阅</td>
+            <td>Displayed in App Store / 以 App Store 显示为准</td>
+            <td>Auto-renewable subscription / 自动续期订阅</td>
+          </tr>
+          <tr>
+            <td>Lifetime / 终身买断</td>
+            <td>Displayed in App Store / 以 App Store 显示为准</td>
+            <td>One-time purchase / 一次性购买</td>
+          </tr>
+        </tbody>
+      </table>
 
-<h2>3. Subscription / 订阅与买断</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>Auto-renewable subscriptions renew automatically unless canceled at least 24 hours before the end of the current billing period. Payment will be charged to your Apple ID account. You can manage or cancel subscriptions in your Apple ID account settings.</p>
+        <p>If a free trial or promotional offer is provided, it will convert to a paid subscription unless canceled before the trial ends, subject to Apple App Store rules.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>自动续期订阅会在当前计费周期结束前自动续订，除非您至少提前 24 小时取消。费用将通过您的 Apple ID 账户收取。您可以在 Apple ID 账户设置中管理或取消订阅。</p>
+        <p>如果提供免费试用或促销优惠，除非您在试用结束前取消，否则可能会按 Apple App Store 规则自动转为付费订阅。</p>
+      </div>
+    </section>
 
-<table>
-<tr>
-<th>Type</th><th>Price</th><th>Description</th>
-</tr>
-<tr>
-<td>Monthly</td><td>¥X.00</td><td>Auto-renew</td>
-</tr>
-<tr>
-<td>Yearly</td><td>¥X.00</td><td>Auto-renew</td>
-</tr>
-<tr>
-<td>Lifetime</td><td>¥X.00</td><td>One-time</td>
-</tr>
-</table>
+    <section>
+      <h2>5. Refund Policy / 退款政策</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>Purchases, subscriptions, cancellations, and refunds are handled by Apple App Store. Grid Player does not directly process App Store payments or refunds. Please contact Apple for refund requests according to Apple policies.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>购买、订阅、取消和退款由 Apple App Store 处理。Grid Player 不直接处理 App Store 付款或退款。退款请求请按照 Apple 的相关政策向 Apple 提交。</p>
+      </div>
+    </section>
 
-<p class="en">Subscriptions renew automatically unless canceled.</p>
-<p class="cn">订阅将自动续费，除非手动取消。</p>
+    <section>
+      <h2>6. Restrictions / 使用限制</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>You agree that you will not:</p>
+        <ul>
+          <li>Reverse engineer, decompile, modify, or create derivative works of the app except where permitted by law.</li>
+          <li>Use the app for illegal, infringing, harmful, or unauthorized purposes.</li>
+          <li>Use the app to access, copy, distribute, or play content without proper rights or authorization.</li>
+          <li>Interfere with the app, security features, payment systems, or third-party services.</li>
+          <li>Share paid features, licenses, or entitlements in a way not permitted by Apple or these terms.</li>
+        </ul>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>您同意不会：</p>
+        <ul>
+          <li>对本应用进行逆向工程、反编译、修改或制作衍生作品，法律允许的情形除外。</li>
+          <li>将本应用用于违法、侵权、有害或未经授权的目的。</li>
+          <li>在没有适当权利或授权的情况下访问、复制、分发或播放内容。</li>
+          <li>干扰本应用、安全功能、支付系统或第三方服务的正常运行。</li>
+          <li>以 Apple 或本协议不允许的方式共享付费功能、许可或权益。</li>
+        </ul>
+      </div>
+    </section>
 
-<h2>4. Refund / 退款政策</h2>
-<p class="en">Handled by Apple App Store.</p>
-<p class="cn">由 Apple App Store 处理。</p>
+    <section>
+      <h2>7. Third-Party Services / 第三方服务</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>Grid Player may connect to third-party or self-hosted services selected by you. We are not responsible for the availability, security, legality, content, or behavior of those services. Your use of third-party services may be subject to their own terms and privacy policies.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>Grid Player 可能连接您自行选择的第三方服务或自托管服务。我们不对这些服务的可用性、安全性、合法性、内容或行为负责。您使用第三方服务可能还需遵守其自身的条款和隐私政策。</p>
+      </div>
+    </section>
 
-<h2>5. Restrictions / 使用限制</h2>
-<ul>
-<li class="en">No reverse engineering</li>
-<li class="cn">禁止逆向工程</li>
+    <section>
+      <h2>8. Disclaimer / 免责声明</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>The app is provided on an "as is" and "as available" basis. To the maximum extent permitted by applicable law, we make no warranties regarding uninterrupted operation, error-free performance, compatibility with every server, or preservation of any data, files, metadata, covers, playlists, or settings.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>本应用按"现状"和"可用状态"提供。在适用法律允许的最大范围内，我们不保证应用持续可用、完全无错误、兼容所有服务器，亦不保证任何数据、文件、元数据、封面、歌单或设置不会丢失。</p>
+      </div>
+    </section>
 
-<li class="en">No illegal use</li>
-<li class="cn">禁止非法用途</li>
-</ul>
+    <section>
+      <h2>9. Limitation of Liability / 责任限制</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>To the maximum extent permitted by applicable law, we will not be liable for indirect, incidental, special, consequential, or punitive damages, including loss of data, loss of content, service interruption, or unauthorized access caused by your device, server, account, network, or third-party services.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>在适用法律允许的最大范围内，我们不对任何间接、附带、特殊、后果性或惩罚性损害承担责任，包括因您的设备、服务器、账号、网络或第三方服务导致的数据丢失、内容丢失、服务中断或未经授权访问。</p>
+      </div>
+    </section>
 
-<h2>6. Disclaimer / 免责声明</h2>
-<p class="en">Provided "as is" without warranties.</p>
-<p class="cn">本应用按“现状”提供。</p>
+    <section>
+      <h2>10. Changes / 协议修改</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>We may update these Terms from time to time. The updated version will be indicated by the "Last Updated" date. Continued use of the app after changes means you accept the updated Terms.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>我们可能不时更新本协议。更新后的版本将通过"最后更新日期"标明。协议更新后您继续使用本应用，即表示您接受更新后的协议。</p>
+      </div>
+    </section>
 
-<h2>7. Changes / 协议修改</h2>
-<p class="en">We may update these terms.</p>
-<p class="cn">我们可能更新本协议。</p>
+    <section>
+      <h2>11. Governing Law / 适用法律</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>These Terms are governed by the laws of the People's Republic of China, without regard to conflict of law principles, unless mandatory local law provides otherwise.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>本协议适用中华人民共和国法律，不适用冲突法规则；如强制性当地法律另有规定，则以该强制性规定为准。</p>
+      </div>
+    </section>
 
-<h2>8. Governing Law / 适用法律</h2>
-<p class="en">Governed by laws of China.</p>
-<p class="cn">适用中华人民共和国法律。</p>
-
-<h2>9. Contact / 联系方式</h2>
-<p class="en">gridmusic@support.com</p>
-<p class="cn">gridmusic@support.com</p>
-
+    <section>
+      <h2>12. Contact / 联系方式</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>If you have questions about these Terms, please contact us at:</p>
+        <p><a href="mailto:gridmusic@support.com">gridmusic@support.com</a></p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>如果您对本协议有任何问题，请通过以下方式联系我们：</p>
+        <p><a href="mailto:gridmusic@support.com">gridmusic@support.com</a></p>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
