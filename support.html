@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GridPlayer Support</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "Helvetica Neue", sans-serif;
+      background: #0b0b0c;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      padding: 48px;
+      backdrop-filter: blur(20px);
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #2f7cff, #6aa8ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 40px rgba(47, 124, 255, 0.35);
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 42px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .label {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .value {
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    a {
+      color: #7db2ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      opacity: 0.85;
+    }
+
+    .footer {
+      margin-top: 40px;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 32px 24px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo">G</div>
+
+    <h1>GridPlayer Support</h1>
+
+    <p class="subtitle">
+      Need help with GridPlayer?<br />
+      Feel free to contact us for support, feedback, or feature requests.
+    </p>
+
+    <div class="card">
+      <div class="label">Support Email</div>
+
+      <div class="value">
+        <a href="mailto:support@gridnet.top">
+          support@gridnet.top
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">Privacy Policy</div>
+
+      <div class="value">
+        <a href="https://garycny.github.io/gridplayer-legal/privacy.html">
+          View Privacy Policy
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">Terms of Service</div>
+
+      <div class="value">
+        <a href="https://garycny.github.io/gridplayer-legal/terms.html">
+          View Terms of Service
+        </a>
+      </div>
+    </div>
+
+    <div class="footer">
+      © 2026 GridPlayer
+    </div>
+  </div>
+</body>
+</html>
