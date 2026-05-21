@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GridPlayer - 格子播放器</title>
+  <meta name="description" content="GridPlayer 是一款为个人音乐收藏而设计的现代 iOS 音乐播放器，支持本地音乐、WebDAV、NAS、Emby、Jellyfin、Navidrome、Subsonic 等多种音乐来源。" />
+  <meta name="keywords" content="GridPlayer, 格子播放器, Music Player, WebDAV, NAS, Emby, Jellyfin, Navidrome, Subsonic, Local Music" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0f17;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      color: #f6f7fb;
+      line-height: 1.5;
+    }
+
+    .gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: radial-gradient(circle at 18% 12%, rgba(125, 183, 255, 0.22), transparent 38%),
+                  radial-gradient(circle at 80% 22%, rgba(255, 159, 90, 0.16), transparent 34%),
+                  linear-gradient(180deg, #0b0f17 0%, #111827 48%, #090c12 100%);
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 头部导航 */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0 20px;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-wrap {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #7db7ff, #ff9f5a);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0b0f17;
+    }
+
+    .brand-text strong {
+      font-size: 18px;
+      display: block;
+      line-height: 1.2;
+    }
+
+    .brand-text small {
+      font-size: 12px;
+      color: #aeb6c8;
+      font-weight: 500;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #aeb6c8;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 8px 16px;
+      border-radius: 40px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.08);
+      color: #f6f7fb;
+    }
+
+    /* Hero 区域（无手机图） */
+    .hero {
+      padding: 64px 0 56px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 13px;
+      color: #dce7ff;
+      margin-bottom: 28px;
+      backdrop-filter: blur(4px);
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: clamp(17px, 2.2vw, 20px);
+      color: #aeb6c8;
+      max-width: 620px;
+      margin: 0 auto 32px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ffffff, #e2edff);
+      color: #0b0f17;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: #f6f7fb;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    /* 功能区 */
+    section {
+      padding: 40px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .section-head p {
+      color: #aeb6c8;
+      font-size: 17px;
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 28px 24px;
+      backdrop-filter: blur(8px);
+      transition: 0.2s;
+    }
+
+    .feature-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+      display: inline-block;
+      background: rgba(125,183,255,0.2);
+      padding: 8px 12px;
+      border-radius: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .feature-card p {
+      color: #aeb6c8;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* 服务标签 */
+    .source-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 60px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #cbd5ff;
+    }
+
+    /* CTA */
+    .cta-block {
+      background: linear-gradient(115deg, rgba(125,183,255,0.12), rgba(255,159,90,0.08));
+      border-radius: 44px;
+      padding: 48px 40px;
+      text-align: center;
+      margin: 40px 0 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .cta-block h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .cta-block p {
+      color: #aeb6c8;
+      margin-bottom: 28px;
+    }
+
+    footer {
+      padding: 40px 0 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 20px;
+      color: #8e97aa;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #b9c7ff;
+      text-decoration: none;
+      margin-left: 24px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        padding: 0 20px;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .hero {
+        padding: 40px 0 32px;
+      }
+      .cta-block {
+        padding: 32px 24px;
+      }
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+      footer a {
+        margin: 0 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="gradient-bg"></div>
+<div class="page">
+  <header>
+    <a href="./index.html" class="brand">
+      <div class="logo-wrap">
+        <span class="logo-text">🎵</span>
+      </div>
+      <div class="brand-text">
+        <strong>GridPlayer</strong>
+        <small>格子播放器</small>
+      </div>
+    </a>
+    <nav>
+      <a href="#features">功能</a>
+      <a href="https://garycny.github.io/gridplayer-legal/support.html">技术支持</a>
+      <a href="https://garycny.github.io/gridplayer-legal/privacy.html">隐私政策</a>
+      <a href="https://garycny.github.io/gridplayer-legal/terms.html">服务协议</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="badge">◼︎ 私人音乐库 · 完全掌控</div>
+      <h2>为你的个人音乐收藏而生。</h2>
+      <p>
+        GridPlayer 是一款现代 iOS 音乐播放器，帮助你统一管理本地音乐、WebDAV、NAS
+        以及私人音乐服务器（Emby / Jellyfin / Navidrome 等）上的所有音乐内容。
+      </p>
+      <div class="actions">
+        <a href="#features" class="btn btn-primary">探索功能</a>
+        <a href="https://garycny.github.io/gridplayer-legal/support.html" class="btn btn-secondary">联系支持</a>
+      </div>
+    </div>
+
+    <section id="features">
+      <div class="section-head">
+        <h2>统一 · 整理 · 重新发现</h2>
+        <p>GridPlayer 不是流媒体平台，而是为你手中真实的音乐收藏打造的现代播放器。</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📡</div>
+          <h3>多种音乐来源</h3>
+          <p>本地音乐、WebDAV、NAS，以及 Emby、Jellyfin、Navidrome、Subsonic、WordPress 等私人服务器。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>智能曲库整理</h3>
+          <p>自动聚合歌曲、专辑与艺术家，智能识别重复歌曲，优先展示高质量版本。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎼</div>
+          <h3>音乐元数据解析</h3>
+          <p>本地音乐与 WebDAV 支持歌曲名、艺术家、专辑、封面和歌词解析，文件秒变完整资料库。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">☁️</div>
+          <h3>个人数据同步</h3>
+          <p>收藏、歌单和播放历史可在不同音乐源之间关联，并通过 iCloud 在多设备同步。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📴</div>
+          <h3>离线与缓存播放</h3>
+          <p>远程音乐支持缓存播放，减少网络波动带来的影响，适合通勤、旅行场景。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>现代播放体验</h3>
+          <p>播放队列、最近播放、收藏管理、连续播放、后台播放、锁屏控制以及均衡器调节。</p>
+        </div>
+      </div>
+
+      <div class="source-tags">
+        <span class="tag">Local Music</span>
+        <span class="tag">WebDAV</span>
+        <span class="tag">NAS</span>
+        <span class="tag">Emby</span>
+        <span class="tag">Jellyfin</span>
+        <span class="tag">Navidrome</span>
+        <span class="tag">Subsonic</span>
+        <span class="tag">WordPress</span>
+        <span class="tag">FLAC</span>
+        <span class="tag">AAC</span>
+        <span class="tag">MP3</span>
+      </div>
+    </section>
+
+    <div class="cta-block">
+      <h2>Own your music. Organize it beautifully.</h2>
+      <p>统一管理本地音乐、WebDAV 与私人音乐服务器的现代音乐播放器。</p>
+      <a href="https://garycny.github.io/gridplayer-legal/support.html" class="btn btn-primary">获取支持</a>
+    </div>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> GridPlayer. All rights reserved.</div>
+    <div>
+      <a href="https://garycny.github.io/gridplayer-legal/privacy.html">隐私政策</a>
+      <a href="https://garycny.github.io/gridplayer-legal/terms.html">服务协议</a>
+      <a href="https://garycny.github.io/gridplayer-legal/support.html">技术支持</a>
+    </div>
+  </footer>
+</div>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
