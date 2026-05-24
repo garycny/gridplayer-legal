@@ -7,6 +7,7 @@
   <meta name="description" content="GridPlayer is a modern iOS music player for personal music collections, with support for local music, WebDAV, NAS, Emby, Jellyfin, Navidrome, Subsonic, and more.">
   <meta name="keywords" content="GridPlayer, 格子播放器, Music Player, WebDAV, NAS, Emby, Jellyfin, Navidrome, Subsonic, Local Music">
   <link rel="icon" type="image/png" href="favicon.png">
+  <script src="shared-nav.js" defer></script>
   <style>
     :root {
       --bg: #0b0f17;
@@ -695,30 +696,8 @@
   </style>
 </head>
 <body>
+  <gridplayer-nav></gridplayer-nav>
   <div class="page">
-    <header>
-      <a href="https://garycny.github.io/gridplayer-legal/gridplayer.html" class="brand" aria-label="GridPlayer">
-        <img src="favicon.png" alt="GridPlayer Logo">
-        <span>
-          <strong>GridPlayer</strong>
-          <small data-i18n="brandSubtitle">格子播放器</small>
-        </span>
-      </a>
-
-      <div class="top-actions">
-        <nav aria-label="Primary navigation">
-          <a href="https://garycny.github.io/gridplayer-legal/gridplayer.html" data-i18n="navHome">首页</a>
-          <a href="https://garycny.github.io/gridplayer-legal/privacy.html" data-i18n="navPrivacy">隐私政策</a>
-          <a href="https://garycny.github.io/gridplayer-legal/terms.html" data-i18n="navTerms">服务协议</a>
-          <a href="https://garycny.github.io/gridplayer-legal/support.html" data-i18n="navSupport">技术支持</a>
-        </nav>
-        <div class="lang-toggle" aria-label="Language">
-          <button type="button" data-lang-button="zh" aria-pressed="true">中</button>
-          <button type="button" data-lang-button="en" aria-pressed="false">EN</button>
-        </div>
-      </div>
-    </header>
-
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div>
@@ -1062,10 +1041,6 @@
         img.alt = `${dictionary.screenshotsTitle} ${number}`;
       });
 
-      document.querySelectorAll("[data-lang-button]").forEach((button) => {
-        button.setAttribute("aria-pressed", button.dataset.langButton === lang ? "true" : "false");
-      });
-
       localStorage.setItem("gridplayer-language", lang);
     }
 
@@ -1105,9 +1080,7 @@
     window.addEventListener("resize", updateCarouselButtons);
 
     document.getElementById("year").textContent = new Date().getFullYear();
-    document.querySelectorAll("[data-lang-button]").forEach((button) => {
-      button.addEventListener("click", () => setLanguage(button.dataset.langButton));
-    });
+    window.addEventListener("gridplayer-language-change", (event) => setLanguage(event.detail.lang));
     setLanguage(preferredLanguage());
     updateCarouselButtons();
   </script>
