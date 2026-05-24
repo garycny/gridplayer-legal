@@ -299,7 +299,7 @@
 
     .section-head {
       max-width: 720px;
-      margin: 0 auto 34px;
+      margin: 0 auto 50px;
       text-align: center;
     }
 
@@ -323,9 +323,9 @@
 
     .feature-card {
       position: relative;
-      min-height: 218px;
+      min-height: 188px;
       overflow: hidden;
-      padding: 26px;
+      padding: 24px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       background:
@@ -367,9 +367,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 48px;
-      height: 48px;
-      margin-bottom: 22px;
+      flex: 0 0 42px;
+      width: 42px;
+      height: 42px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 12px;
       background:
@@ -380,8 +380,8 @@
     }
 
     .feature-icon svg {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       stroke: currentColor;
       stroke-width: 1.8;
       stroke-linecap: round;
@@ -389,8 +389,15 @@
       fill: none;
     }
 
+    .feature-title-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
     .feature-card h3 {
-      margin-bottom: 10px;
+      margin-bottom: 0;
       font-size: 19px;
       line-height: 1.25;
       letter-spacing: 0;
@@ -741,71 +748,136 @@
 
         <div class="features-grid">
           <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 18.5v-7"></path>
-                <path d="M8.5 15a5 5 0 0 1 7 0"></path>
-                <path d="M5.5 12a9 9 0 0 1 13 0"></path>
-                <path d="M2.5 8.8a13.5 13.5 0 0 1 19 0"></path>
-                <path d="M12 19.5h.01"></path>
-              </svg>
+            <div class="feature-title-row">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 7h6"></path>
+                  <path d="M14 7h6"></path>
+                  <path d="M4 12h16"></path>
+                  <path d="M4 17h6"></path>
+                  <path d="M14 17h6"></path>
+                </svg>
+              </div>
+              <h3 data-i18n="feature1Title">统一你的音乐来源</h3>
             </div>
-            <h3 data-i18n="feature1Title">多种音乐来源</h3>
-            <p data-i18n="feature1Copy">本地音乐、WebDAV、NAS，以及 Emby、Jellyfin、Navidrome、Subsonic、WordPress 等私人服务器。</p>
+            <p data-i18n="feature1Copy">聚合本地导入、WebDAV，以及 Emby、Jellyfin、Navidrome、Subsonic、WordPress 等服务器音乐源。</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M4 7h10a4 4 0 0 1 4 4v1"></path>
-                <path d="M7 4 4 7l3 3"></path>
-                <path d="M20 17H10a4 4 0 0 1-4-4v-1"></path>
-                <path d="m17 20 3-3-3-3"></path>
-              </svg>
+            <div class="feature-title-row">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 6h14"></path>
+                  <path d="M5 12h14"></path>
+                  <path d="M5 18h14"></path>
+                  <path d="M8 6v12"></path>
+                  <path d="M16 6v12"></path>
+                </svg>
+              </div>
+              <h3 data-i18n="feature2Title">支持多种音频格式</h3>
             </div>
-            <h3 data-i18n="feature2Title">智能曲库整理</h3>
-            <p data-i18n="feature2Copy">自动聚合歌曲、专辑与艺术家，智能识别重复歌曲，优先展示高质量版本。</p>
+            <p data-i18n="feature2Copy">支持 MP3、M4A、WAV、FLAC、AAC 等常见音频格式，让本地收藏和服务器音乐顺畅播放。</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M9 18V5l10-2v13"></path>
-                <circle cx="6" cy="18" r="3"></circle>
-                <circle cx="16" cy="16" r="3"></circle>
-              </svg>
+            <div class="feature-title-row">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 7h10a4 4 0 0 1 4 4v1"></path>
+                  <path d="M7 4 4 7l3 3"></path>
+                  <path d="M20 17H10a4 4 0 0 1-4-4v-1"></path>
+                  <path d="m17 20 3-3-3-3"></path>
+                </svg>
+              </div>
+              <h3 data-i18n="feature3Title">更聪明的曲库整理</h3>
             </div>
-            <h3 data-i18n="feature3Title">音乐元数据解析</h3>
-            <p data-i18n="feature3Copy">本地音乐与 WebDAV 支持歌曲名、艺术家、专辑、封面和歌词解析，文件秒变完整资料库。</p>
+            <p data-i18n="feature3Copy">自动识别重复歌曲，优先展示音质更高、信息更完整的版本，并支持整理艺术家、专辑和歌单。</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M17.5 19H8a5 5 0 1 1 1.2-9.85A6 6 0 0 1 20 13a3 3 0 0 1-2.5 6Z"></path>
-                <path d="M12 12v5"></path>
-                <path d="m9.8 14.2 2.2-2.2 2.2 2.2"></path>
-              </svg>
+            <div class="feature-title-row">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 18V5l10-2v13"></path>
+                  <circle cx="6" cy="18" r="3"></circle>
+                  <circle cx="16" cy="16" r="3"></circle>
+                </svg>
+              </div>
+              <h3 data-i18n="feature4Title">音乐元数据解析</h3>
             </div>
-            <h3 data-i18n="feature4Title">个人数据同步</h3>
-            <p data-i18n="feature4Copy">收藏、歌单和播放历史可在不同音乐源之间关联，并通过 iCloud 在多设备同步。</p>
+            <p data-i18n="feature4Copy">本地音乐与 WebDAV 支持解析歌曲名、艺术家、专辑、封面和歌词，文件列表变成完整资料库。</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 3v10"></path>
-                <path d="m8 9 4 4 4-4"></path>
-                <path d="M5 17.5A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5"></path>
-              </svg>
+            <div class="feature-title-row">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M7 8h10"></path>
+                  <path d="M7 12h10"></path>
+                  <path d="M7 16h6"></path>
+                  <path d="M4 5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"></path>
+                  <path d="M15 3v5h5"></path>
+                </svg>
+              </div>
+              <h3 data-i18n="feature5Title">跨音乐源的个人数据</h3>
             </div>
-            <h3 data-i18n="feature5Title">离线与缓存播放</h3>
-            <p data-i18n="feature5Copy">远程音乐支持缓存播放，减少网络波动带来的影响，适合通勤、旅行场景。</p>
+            <p data-i18n="feature5Copy">收藏、歌单、播放历史等数据会尽可能在不同音乐源之间关联，切换服务器也能保持连续。</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M13 2 5 13h6l-1 9 8-12h-6l1-8Z"></path>
-              </svg>
+            <div class="feature-title-row">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M17.5 19H8a5 5 0 1 1 1.2-9.85A6 6 0 0 1 20 13a3 3 0 0 1-2.5 6Z"></path>
+                  <path d="M12 12v5"></path>
+                  <path d="m9.8 14.2 2.2-2.2 2.2 2.2"></path>
+                </svg>
+              </div>
+              <h3 data-i18n="feature6Title">iCloud 多设备同步</h3>
             </div>
-            <h3 data-i18n="feature6Title">现代播放体验</h3>
-            <p data-i18n="feature6Copy">播放队列、最近播放、收藏管理、连续播放、后台播放、锁屏控制以及均衡器调节。</p>
+            <p data-i18n="feature6Copy">通过 iCloud 同步收藏、歌单等个人数据，让多台设备上的音乐管理体验保持一致。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-title-row">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 19V5"></path>
+                  <path d="M4 19h16"></path>
+                  <path d="M8 16v-4"></path>
+                  <path d="M12 16V8"></path>
+                  <path d="M16 16v-6"></path>
+                  <path d="M20 16V7"></path>
+                </svg>
+              </div>
+              <h3 data-i18n="feature7Title">智能年代分类与推荐</h3>
+            </div>
+            <p data-i18n="feature7Copy">根据音乐时间信息归类不同年代，并结合收藏和播放记录生成个性化推荐内容。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-title-row">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3v10"></path>
+                  <path d="m8 9 4 4 4-4"></path>
+                  <path d="M5 17.5A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5"></path>
+                </svg>
+              </div>
+              <h3 data-i18n="feature8Title">离线与缓存播放</h3>
+            </div>
+            <p data-i18n="feature8Copy">远程音乐可缓存播放，减少网络波动影响，适合通勤、旅行或局域网环境不稳定时使用。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-title-row">
+              <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 8h5"></path>
+                  <path d="M15 8h5"></path>
+                  <path d="M12 5v6"></path>
+                  <path d="M4 16h9"></path>
+                  <path d="M19 13v6"></path>
+                  <path d="M16 16h4"></path>
+                  <circle cx="12" cy="8" r="2"></circle>
+                  <circle cx="19" cy="16" r="2"></circle>
+                </svg>
+              </div>
+              <h3 data-i18n="feature9Title">均衡器与播放体验</h3>
+            </div>
+            <p data-i18n="feature9Copy">内置均衡器，并支持播放队列、最近播放、连续播放、后台播放和锁屏控制。</p>
           </article>
         </div>
 
@@ -831,14 +903,16 @@
         </div>
         <div class="screenshot-carousel">
           <div class="screenshot-strip" id="screenshotTrack" tabindex="0" aria-label="App screenshots carousel">
+            <figure class="screenshot"><img data-shot="1" src="GridPlayer-iPhone-Home-cn-US/CN1.PNG" alt=""></figure>
+            <figure class="screenshot"><img data-shot="2" src="GridPlayer-iPhone-Home-cn-US/CN2.PNG" alt=""></figure>
             <figure class="screenshot"><img data-shot="3" src="GridPlayer-iPhone-Home-cn-US/CN3.PNG" alt=""></figure>
             <figure class="screenshot"><img data-shot="4" src="GridPlayer-iPhone-Home-cn-US/CN4.PNG" alt=""></figure>
-            <figure class="screenshot"><img data-shot="5" src="GridPlayer-iPhone-Home-cn-US/CN5.PNG" alt=""></figure>
             <figure class="screenshot"><img data-shot="6" src="GridPlayer-iPhone-Home-cn-US/CN6.PNG" alt=""></figure>
             <figure class="screenshot"><img data-shot="7" src="GridPlayer-iPhone-Home-cn-US/CN7.PNG" alt=""></figure>
             <figure class="screenshot"><img data-shot="8" src="GridPlayer-iPhone-Home-cn-US/CN8.PNG" alt=""></figure>
             <figure class="screenshot"><img data-shot="9" src="GridPlayer-iPhone-Home-cn-US/CN9.PNG" alt=""></figure>
             <figure class="screenshot"><img data-shot="10" src="GridPlayer-iPhone-Home-cn-US/CN10.PNG" alt=""></figure>
+            <figure class="screenshot"><img data-shot="5" src="GridPlayer-iPhone-Home-cn-US/CN5.PNG" alt=""></figure>
           </div>
           <div class="carousel-controls" aria-label="Screenshot controls">
             <button class="carousel-button" type="button" data-carousel="prev" aria-label="Previous screenshot">‹</button>
@@ -882,18 +956,24 @@
         secondaryAction: "联系支持",
         featuresTitle: "统一 · 整理 · 重新发现",
         featuresCopy: "GridPlayer 不是流媒体平台，而是为你手中真实的音乐收藏打造的现代播放器。",
-        feature1Title: "多种音乐来源",
-        feature1Copy: "本地音乐、WebDAV、NAS，以及 Emby、Jellyfin、Navidrome、Subsonic、WordPress 等私人服务器。",
-        feature2Title: "智能曲库整理",
-        feature2Copy: "自动聚合歌曲、专辑与艺术家，智能识别重复歌曲，优先展示高质量版本。",
-        feature3Title: "音乐元数据解析",
-        feature3Copy: "本地音乐与 WebDAV 支持歌曲名、艺术家、专辑、封面和歌词解析，文件秒变完整资料库。",
-        feature4Title: "个人数据同步",
-        feature4Copy: "收藏、歌单和播放历史可在不同音乐源之间关联，并通过 iCloud 在多设备同步。",
-        feature5Title: "离线与缓存播放",
-        feature5Copy: "远程音乐支持缓存播放，减少网络波动带来的影响，适合通勤、旅行场景。",
-        feature6Title: "现代播放体验",
-        feature6Copy: "播放队列、最近播放、收藏管理、连续播放、后台播放、锁屏控制以及均衡器调节。",
+        feature1Title: "统一你的音乐来源",
+        feature1Copy: "聚合本地导入、WebDAV，以及 Emby、Jellyfin、Navidrome、Subsonic、WordPress 等服务器音乐源。",
+        feature2Title: "支持多种音频格式",
+        feature2Copy: "支持 MP3、M4A、WAV、FLAC、AAC 等常见音频格式，让本地收藏和服务器音乐顺畅播放。",
+        feature3Title: "更聪明的曲库整理",
+        feature3Copy: "自动识别重复歌曲，优先展示音质更高、信息更完整的版本，并支持整理艺术家、专辑和歌单。",
+        feature4Title: "音乐元数据解析",
+        feature4Copy: "本地音乐与 WebDAV 支持解析歌曲名、艺术家、专辑、封面和歌词，文件列表变成完整资料库。",
+        feature5Title: "跨音乐源的个人数据",
+        feature5Copy: "收藏、歌单、播放历史等数据会尽可能在不同音乐源之间关联，切换服务器也能保持连续。",
+        feature6Title: "iCloud 多设备同步",
+        feature6Copy: "通过 iCloud 同步收藏、歌单等个人数据，让多台设备上的音乐管理体验保持一致。",
+        feature7Title: "智能年代分类与推荐",
+        feature7Copy: "根据音乐时间信息归类不同年代，并结合收藏和播放记录生成个性化推荐内容。",
+        feature8Title: "离线与缓存播放",
+        feature8Copy: "远程音乐可缓存播放，减少网络波动影响，适合通勤、旅行或局域网环境不稳定时使用。",
+        feature9Title: "均衡器与播放体验",
+        feature9Copy: "内置均衡器，并支持播放队列、最近播放、连续播放、后台播放和锁屏控制。",
         screenshotsTitle: "应用截图",
         screenshotsCopy: "从曲库浏览到播放控制，用清晰的界面管理你的私人音乐收藏。",
         ctaTitle: "Own your music. Organize it beautifully.",
@@ -920,18 +1000,24 @@
         secondaryAction: "Contact support",
         featuresTitle: "Unify, organize, and rediscover",
         featuresCopy: "GridPlayer is not a streaming platform. It is a modern player for the music collection you already own.",
-        feature1Title: "Multiple music sources",
-        feature1Copy: "Play local music, WebDAV, NAS, and private servers including Emby, Jellyfin, Navidrome, Subsonic, and WordPress.",
-        feature2Title: "Smart library organization",
-        feature2Copy: "Automatically groups songs, albums, and artists, identifies duplicates, and prioritizes higher-quality versions.",
-        feature3Title: "Rich metadata parsing",
-        feature3Copy: "Local and WebDAV files can be parsed for title, artist, album, artwork, and lyrics, turning folders into a complete library.",
-        feature4Title: "Personal data sync",
-        feature4Copy: "Favorites, playlists, and play history can connect across sources and sync between devices through iCloud.",
-        feature5Title: "Offline cache playback",
-        feature5Copy: "Cache remote music for smoother listening when networks are unstable, whether you are commuting or traveling.",
-        feature6Title: "Modern playback experience",
-        feature6Copy: "Queue management, recently played, favorites, continuous playback, background audio, lock-screen controls, and equalizer support.",
+        feature1Title: "Unify your music sources",
+        feature1Copy: "Bring together local imports, WebDAV, and server sources such as Emby, Jellyfin, Navidrome, Subsonic, and WordPress.",
+        feature2Title: "Broad audio format support",
+        feature2Copy: "Play common formats including MP3, M4A, WAV, FLAC, and AAC from both local collections and private servers.",
+        feature3Title: "Smarter library organization",
+        feature3Copy: "Detect duplicate tracks, prefer higher-quality and richer versions, and organize artists, albums, and playlists your way.",
+        feature4Title: "Rich metadata parsing",
+        feature4Copy: "Parse titles, artists, albums, artwork, and lyrics from local and WebDAV music, turning files into a browsable library.",
+        feature5Title: "Personal data across sources",
+        feature5Copy: "Favorites, playlists, and play history can stay connected across music sources, preserving continuity as you switch servers.",
+        feature6Title: "iCloud multi-device sync",
+        feature6Copy: "Sync favorites, playlists, and personal data through iCloud so your library management stays consistent across devices.",
+        feature7Title: "Era grouping and recommendations",
+        feature7Copy: "Group music by year or era, then rediscover your collection with recommendations based on favorites and play history.",
+        feature8Title: "Offline and cache playback",
+        feature8Copy: "Cache remote music to reduce the impact of unstable networks during commuting, travel, or local network changes.",
+        feature9Title: "Equalizer and playback flow",
+        feature9Copy: "Use the built-in equalizer plus queue, recents, continuous playback, background audio, and lock-screen controls.",
         screenshotsTitle: "App screenshots",
         screenshotsCopy: "Browse, manage, and play your private music collection through a clean, focused interface.",
         ctaTitle: "Own your music. Organize it beautifully.",
