@@ -64,6 +64,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 18px;
       padding: 22px 0 18px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -98,6 +99,7 @@
     }
 
     .top-actions {
+      min-width: 0;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -110,6 +112,7 @@
       gap: 8px;
       flex-wrap: wrap;
       justify-content: flex-end;
+      min-width: 0;
     }
 
     nav a,
@@ -705,9 +708,9 @@
       <div class="top-actions">
         <nav aria-label="Primary navigation">
           <a href="https://garycny.github.io/gridplayer-legal/gridplayer.html" data-i18n="navHome">首页</a>
-          <a href="https://garycny.github.io/gridplayer-legal/support.html" data-i18n="navSupport">技术支持</a>
           <a href="https://garycny.github.io/gridplayer-legal/privacy.html" data-i18n="navPrivacy">隐私政策</a>
           <a href="https://garycny.github.io/gridplayer-legal/terms.html" data-i18n="navTerms">服务协议</a>
+          <a href="https://garycny.github.io/gridplayer-legal/support.html" data-i18n="navSupport">技术支持</a>
         </nav>
         <div class="lang-toggle" aria-label="Language">
           <button type="button" data-lang-button="zh" aria-pressed="true">中</button>
