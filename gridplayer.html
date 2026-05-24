@@ -1,153 +1,199 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GridPlayer - 格子播放器</title>
-  <meta name="description" content="GridPlayer 是一款为个人音乐收藏而设计的现代 iOS 音乐播放器，支持本地音乐、WebDAV、NAS、Emby、Jellyfin、Navidrome、Subsonic 等多种音乐来源。" />
-  <meta name="keywords" content="GridPlayer, 格子播放器, Music Player, WebDAV, NAS, Emby, Jellyfin, Navidrome, Subsonic, Local Music" />
-  <!-- 👇 添加这一行 -->
+  <meta name="description" content="GridPlayer is a modern iOS music player for personal music collections, with support for local music, WebDAV, NAS, Emby, Jellyfin, Navidrome, Subsonic, and more.">
+  <meta name="keywords" content="GridPlayer, 格子播放器, Music Player, WebDAV, NAS, Emby, Jellyfin, Navidrome, Subsonic, Local Music">
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
+    :root {
+      --bg: #0b0f17;
+      --surface: rgba(255, 255, 255, 0.06);
+      --surface-strong: rgba(255, 255, 255, 0.1);
+      --line: rgba(255, 255, 255, 0.12);
+      --text: #f6f7fb;
+      --muted: #aeb6c8;
+      --soft: #dce7ff;
+      --blue: #7db7ff;
+      --orange: #ff9f5a;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #0b0f17;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-      color: #f6f7fb;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
-    .gradient-bg {
+    body::before {
+      content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       z-index: -2;
-      background: radial-gradient(circle at 18% 12%, rgba(125, 183, 255, 0.22), transparent 38%),
-                  radial-gradient(circle at 80% 22%, rgba(255, 159, 90, 0.16), transparent 34%),
-                  linear-gradient(180deg, #0b0f17 0%, #111827 48%, #090c12 100%);
+      background:
+        radial-gradient(circle at 14% 14%, rgba(125, 183, 255, 0.22), transparent 34%),
+        radial-gradient(circle at 82% 18%, rgba(255, 159, 90, 0.16), transparent 30%),
+        linear-gradient(180deg, #0b0f17 0%, #111827 48%, #090c12 100%);
+    }
+
+    a {
+      color: inherit;
     }
 
     .page {
-      max-width: 1120px;
+      width: min(100% - 100px, 1440px);
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 0 24px;
     }
 
-    /* 头部导航 */
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 24px 0 20px;
-      flex-wrap: wrap;
-      gap: 16px;
+      gap: 18px;
+      padding: 22px 0 18px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 12px;
       text-decoration: none;
+      min-width: fit-content;
     }
 
-    .logo-wrap {
+    .brand img {
       width: 44px;
       height: 44px;
-      background: linear-gradient(135deg, #7db7ff, #ff9f5a);
       border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
     }
 
-    .logo-text {
-      font-size: 24px;
-      font-weight: 800;
-      color: #0b0f17;
-    }
-
-    .brand-text strong {
-      font-size: 18px;
+    .brand strong {
       display: block;
+      font-size: 18px;
       line-height: 1.2;
     }
 
-    .brand-text small {
+    .brand small {
+      display: block;
+      color: var(--muted);
       font-size: 12px;
-      color: #aeb6c8;
-      font-weight: 500;
+      font-weight: 600;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     nav {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
-    nav a {
-      color: #aeb6c8;
-      text-decoration: none;
+    nav a,
+    .lang-toggle button {
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
       font-size: 14px;
-      padding: 8px 16px;
-      border-radius: 40px;
-      transition: 0.2s;
+      padding: 8px 13px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
-    nav a:hover {
-      background: rgba(255,255,255,0.08);
-      color: #f6f7fb;
+    nav a:hover,
+    .lang-toggle button:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
     }
 
-    /* Hero 区域（无手机图） */
+    .lang-toggle {
+      display: inline-flex;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .lang-toggle button {
+      min-width: 44px;
+      padding: 6px 10px;
+    }
+
+    .lang-toggle button[aria-pressed="true"] {
+      background: #f6f7fb;
+      color: #0b0f17;
+      font-weight: 700;
+    }
+
     .hero {
-      padding: 64px 0 56px;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+      align-items: center;
+      gap: clamp(34px, 5vw, 78px);
+      min-height: calc(100svh - 86px);
+      padding: clamp(34px, 6vh, 74px) 0;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 100px;
-      padding: 6px 18px;
+      width: fit-content;
+      margin-bottom: 24px;
+      padding: 7px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--soft);
       font-size: 13px;
-      color: #dce7ff;
-      margin-bottom: 28px;
       backdrop-filter: blur(4px);
     }
 
     h1 {
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
+      max-width: 760px;
       margin-bottom: 24px;
-      font-weight: 800;
+      font-size: clamp(42px, 6vw, 76px);
+      font-weight: 850;
+      letter-spacing: 0;
+      line-height: 1.04;
     }
 
-    .hero p {
-      font-size: clamp(17px, 2.2vw, 20px);
-      color: #aeb6c8;
-      max-width: 620px;
-      margin: 0 auto 32px;
+    .hero-copy {
+      max-width: 650px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 20px);
     }
 
     .actions {
       display: flex;
       gap: 14px;
-      justify-content: center;
       flex-wrap: wrap;
     }
 
@@ -155,291 +201,825 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 28px;
-      border-radius: 60px;
-      font-weight: 600;
+      min-height: 44px;
+      padding: 10px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
       font-size: 15px;
+      font-weight: 700;
       text-decoration: none;
-      transition: all 0.2s ease;
-      border: 1px solid rgba(255,255,255,0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
     }
 
     .btn-primary {
+      border: 0;
       background: linear-gradient(135deg, #ffffff, #e2edff);
       color: #0b0f17;
-      border: none;
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.06);
-      color: #f6f7fb;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
     }
 
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.12);
-      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.12);
     }
 
-    /* 功能区 */
+    .hero-phone {
+      position: relative;
+      min-height: min(70svh, 680px);
+    }
+
+    .phone-frame {
+      position: absolute;
+      width: min(34vw, 310px);
+      aspect-ratio: 450 / 920;
+      height: auto;
+      overflow: visible;
+      border-radius: 46px;
+      isolation: isolate;
+    }
+
+    .phone-screen,
+    .phone-device {
+      position: absolute;
+      display: block;
+      max-width: none;
+    }
+
+    .phone-screen {
+      inset: 2.65% 5.55%;
+      z-index: 1;
+      border-radius: 37px;
+      object-fit: cover;
+      width: 88.9%;
+      height: 94.7%;
+      clip-path: inset(0 round 37px);
+    }
+
+    .phone-device {
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      pointer-events: none;
+      filter:
+        drop-shadow(0 28px 44px rgba(0, 0, 0, 0.46))
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.26))
+        drop-shadow(0 1px 0 rgba(255, 255, 255, 0.08));
+    }
+
+    .phone-frame.primary {
+      right: min(18vw, 180px);
+      top: 0;
+      z-index: 2;
+    }
+
+    .phone-frame.secondary {
+      right: 0;
+      top: clamp(54px, 10vh, 96px);
+      z-index: 1;
+      opacity: 0.82;
+      transform: scale(0.92);
+    }
+
     section {
-      padding: 40px 0;
+      padding: 42px 0px;
     }
 
     .section-head {
+      max-width: 720px;
+      margin: 0 auto 34px;
       text-align: center;
-      margin-bottom: 48px;
     }
 
     .section-head h2 {
-      font-size: clamp(28px, 4vw, 42px);
-      letter-spacing: -0.03em;
       margin-bottom: 12px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: 0;
+      line-height: 1.14;
     }
 
     .section-head p {
-      color: #aeb6c8;
+      color: var(--muted);
       font-size: 17px;
-      max-width: 660px;
-      margin: 0 auto;
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
     }
 
     .feature-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 28px;
-      padding: 28px 24px;
-      backdrop-filter: blur(8px);
-      transition: 0.2s;
+      position: relative;
+      min-height: 218px;
+      overflow: hidden;
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
+        rgba(9, 13, 21, 0.78);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 18px 42px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(14px);
+      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(125, 183, 255, 0.12), transparent 38%, rgba(255, 159, 90, 0.08));
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .feature-card > * {
+      position: relative;
+      z-index: 1;
     }
 
     .feature-card:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.2);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.045)),
+        rgba(12, 17, 27, 0.86);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 24px 52px rgba(0, 0, 0, 0.26);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
     }
 
     .feature-icon {
-      font-size: 32px;
-      margin-bottom: 20px;
-      display: inline-block;
-      background: rgba(125,183,255,0.2);
-      padding: 8px 12px;
-      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
+        rgba(125, 183, 255, 0.08);
+      color: #e9f2ff;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 10px 22px rgba(0, 0, 0, 0.22);
+    }
+
+    .feature-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
 
     .feature-card h3 {
-      font-size: 20px;
       margin-bottom: 10px;
-      font-weight: 700;
+      font-size: 19px;
+      line-height: 1.25;
+      letter-spacing: 0;
     }
 
     .feature-card p {
-      color: #aeb6c8;
+      color: var(--muted);
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.62;
     }
 
-    /* 服务标签 */
     .source-tags {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin-top: 32px;
+      margin-top: 30px;
     }
 
     .tag {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 60px;
-      padding: 8px 20px;
-      font-size: 13px;
-      font-weight: 500;
+      padding: 8px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
       color: #cbd5ff;
+      font-size: 13px;
+      font-weight: 600;
     }
 
-    /* CTA */
+    .screenshots {
+      margin-inline: 0;
+      padding-inline: 0;
+    }
+
+    .screenshot-carousel {
+      position: relative;
+    }
+
+    .screenshot-strip {
+      display: flex;
+      gap: 18px;
+      align-items: start;
+      overflow-x: auto;
+      padding: 6px 2px 18px;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .screenshot-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .screenshot {
+      flex: 0 0 clamp(190px, 22vw, 260px);
+      overflow: hidden;
+      aspect-ratio: 1284 / 2778;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 30px;
+      background: #111827;
+      box-shadow: 0 22px 38px rgba(0, 0, 0, 0.28);
+      scroll-snap-align: center;
+    }
+
+    .screenshot:nth-child(even) {
+      margin-top: 38px;
+    }
+
+    .screenshot img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .carousel-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+      transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .carousel-button:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-2px);
+    }
+
+    .carousel-button:disabled {
+      cursor: default;
+      opacity: 0.38;
+      transform: none;
+    }
+
     .cta-block {
-      background: linear-gradient(115deg, rgba(125,183,255,0.12), rgba(255,159,90,0.08));
-      border-radius: 44px;
-      padding: 48px 40px;
+      margin: 42px 0 20px;
+      padding: 44px 36px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: linear-gradient(115deg, rgba(125, 183, 255, 0.12), rgba(255, 159, 90, 0.08));
       text-align: center;
-      margin: 40px 0 20px;
-      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .cta-block h2 {
-      font-size: 28px;
       margin-bottom: 12px;
+      font-size: clamp(26px, 3vw, 34px);
+      line-height: 1.18;
     }
 
     .cta-block p {
-      color: #aeb6c8;
-      margin-bottom: 28px;
+      max-width: 620px;
+      margin: 0 auto 26px;
+      color: var(--muted);
     }
 
     footer {
-      padding: 40px 0 56px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      justify-content: space-between;
+      gap: 18px;
       margin-top: 20px;
+      padding: 36px 0 52px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       color: #8e97aa;
       font-size: 13px;
+    }
+
+    footer div:last-child {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     footer a {
       color: #b9c7ff;
       text-decoration: none;
-      margin-left: 24px;
     }
 
     footer a:hover {
       text-decoration: underline;
     }
 
-    @media (max-width: 860px) {
-      .page {
-        padding: 0 20px;
+    @media (max-width: 980px) {
+      header {
+        align-items: flex-start;
       }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        min-height: auto;
+        padding-top: 44px;
+      }
+
+      .hero-phone {
+        min-height: min(68vh, 540px);
+        max-width: 520px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .phone-frame {
+        width: min(52vw, 280px);
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .screenshot {
+        flex-basis: 220px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .page {
+        width: min(100% - 36px, 1440px);
+      }
+
+      header,
+      .top-actions,
+      nav {
+        width: 100%;
+      }
+
+      header {
+        flex-direction: column;
+      }
+
+      .top-actions {
+        justify-content: flex-start;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      nav a {
+        padding-inline: 10px;
+      }
+
+      .hero {
+        padding: 34px 0 24px;
+      }
+
+      .actions {
+        width: 100%;
+      }
+
+      .btn {
+        flex: 1 1 170px;
+      }
+
+      .hero-phone {
+        min-height: min(62vh, 430px);
+      }
+
+      .phone-frame {
+        width: min(58vw, 220px);
+        border-radius: 36px;
+      }
+
+      .phone-screen {
+        border-radius: 29px;
+        clip-path: inset(0 round 29px);
+      }
+
+      .phone-frame.primary {
+        left: 8%;
+        right: auto;
+      }
+
+      .phone-frame.secondary {
+        right: 8%;
+      }
+
       .features-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
       }
-      .hero {
-        padding: 40px 0 32px;
+
+      .feature-card {
+        min-height: 0;
       }
+
+      .screenshots {
+        padding-inline: 0;
+      }
+
+      .screenshot-strip {
+        gap: 14px;
+      }
+
+      .screenshot {
+        flex-basis: 172px;
+        scroll-snap-align: start;
+      }
+
+      .screenshot:nth-child(even) {
+        margin-top: 24px;
+      }
+
       .cta-block {
-        padding: 32px 24px;
+        padding: 32px 22px;
       }
+
       footer {
         flex-direction: column;
-        text-align: center;
+        align-items: flex-start;
       }
-      footer a {
-        margin: 0 12px;
+
+      footer div:last-child {
+        justify-content: flex-start;
       }
     }
   </style>
 </head>
 <body>
-<div class="gradient-bg"></div>
-<div class="page">
-  <header>
-    <a href="./index.html" class="brand">
-      <img src="favicon.png" alt="GridPlayer Logo" style="height: 44px; width: auto; border-radius: 14px;">
-      <div class="brand-text">
-        <strong>GridPlayer</strong>
-        <small>格子播放器</small>
-      </div>
-    </a>
-    <nav>
-      <a href="#features">功能</a>
-      <a href="https://garycny.github.io/gridplayer-legal/support.html">技术支持</a>
-      <a href="https://garycny.github.io/gridplayer-legal/privacy.html">隐私政策</a>
-      <a href="https://garycny.github.io/gridplayer-legal/terms.html">服务协议</a>
-    </nav>
-  </header>
+  <div class="page">
+    <header>
+      <a href="https://garycny.github.io/gridplayer-legal/gridplayer.html" class="brand" aria-label="GridPlayer">
+        <img src="favicon.png" alt="GridPlayer Logo">
+        <span>
+          <strong>GridPlayer</strong>
+          <small data-i18n="brandSubtitle">格子播放器</small>
+        </span>
+      </a>
 
-  <main>
-    <div class="hero">
-      <div class="badge">◼︎ 私人音乐库 · 完全掌控</div>
-      <h2>为你的个人音乐收藏而生。</h2>
-      <p>
-        GridPlayer 是一款现代 iOS 音乐播放器，帮助你统一管理本地音乐、WebDAV、NAS
-        以及私人音乐服务器（Emby / Jellyfin / Navidrome 等）上的所有音乐内容。
-      </p>
-      <div class="actions">
-        <a href="#features" class="btn btn-primary">探索功能</a>
-        <a href="https://garycny.github.io/gridplayer-legal/support.html" class="btn btn-secondary">联系支持</a>
-      </div>
-    </div>
-
-    <section id="features">
-      <div class="section-head">
-        <h2>统一 · 整理 · 重新发现</h2>
-        <p>GridPlayer 不是流媒体平台，而是为你手中真实的音乐收藏打造的现代播放器。</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">📡</div>
-          <h3>多种音乐来源</h3>
-          <p>本地音乐、WebDAV、NAS，以及 Emby、Jellyfin、Navidrome、Subsonic、WordPress 等私人服务器。</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔄</div>
-          <h3>智能曲库整理</h3>
-          <p>自动聚合歌曲、专辑与艺术家，智能识别重复歌曲，优先展示高质量版本。</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎼</div>
-          <h3>音乐元数据解析</h3>
-          <p>本地音乐与 WebDAV 支持歌曲名、艺术家、专辑、封面和歌词解析，文件秒变完整资料库。</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">☁️</div>
-          <h3>个人数据同步</h3>
-          <p>收藏、歌单和播放历史可在不同音乐源之间关联，并通过 iCloud 在多设备同步。</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📴</div>
-          <h3>离线与缓存播放</h3>
-          <p>远程音乐支持缓存播放，减少网络波动带来的影响，适合通勤、旅行场景。</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>现代播放体验</h3>
-          <p>播放队列、最近播放、收藏管理、连续播放、后台播放、锁屏控制以及均衡器调节。</p>
+      <div class="top-actions">
+        <nav aria-label="Primary navigation">
+          <a href="#features" data-i18n="navFeatures">功能</a>
+          <a href="#screenshots" data-i18n="navScreenshots">截图</a>
+          <a href="https://garycny.github.io/gridplayer-legal/support.html" data-i18n="navSupport">技术支持</a>
+          <a href="https://garycny.github.io/gridplayer-legal/privacy.html" data-i18n="navPrivacy">隐私政策</a>
+          <a href="https://garycny.github.io/gridplayer-legal/terms.html" data-i18n="navTerms">服务协议</a>
+        </nav>
+        <div class="lang-toggle" aria-label="Language">
+          <button type="button" data-lang-button="zh" aria-pressed="true">中</button>
+          <button type="button" data-lang-button="en" aria-pressed="false">EN</button>
         </div>
       </div>
+    </header>
 
-      <div class="source-tags">
-        <span class="tag">Local Music</span>
-        <span class="tag">WebDAV</span>
-        <span class="tag">NAS</span>
-        <span class="tag">Emby</span>
-        <span class="tag">Jellyfin</span>
-        <span class="tag">Navidrome</span>
-        <span class="tag">Subsonic</span>
-        <span class="tag">WordPress</span>
-        <span class="tag">FLAC</span>
-        <span class="tag">AAC</span>
-        <span class="tag">MP3</span>
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <div class="badge" data-i18n="badge">私人音乐库 · 完全掌控</div>
+          <h1 id="hero-title" data-i18n="heroTitle">为你的个人音乐收藏而生。</h1>
+          <p class="hero-copy" data-i18n="heroCopy">GridPlayer 是一款现代 iOS 音乐播放器，帮助你统一管理本地音乐、WebDAV、NAS 以及私人音乐服务器上的所有音乐内容。</p>
+          <div class="actions">
+            <a href="#features" class="btn btn-primary" data-i18n="primaryAction">探索功能</a>
+            <a href="https://garycny.github.io/gridplayer-legal/support.html" class="btn btn-secondary" data-i18n="secondaryAction">联系支持</a>
+          </div>
+        </div>
+        <div class="hero-phone" aria-hidden="true">
+          <div class="phone-frame primary">
+            <img class="phone-screen" data-shot="7" src="GridPlayer-iPhone-Home-cn-US/CN7.PNG" alt="">
+            <img class="phone-device" src="iphone-frame.png" alt="">
+          </div>
+          <div class="phone-frame secondary">
+            <img class="phone-screen" data-shot="8" src="GridPlayer-iPhone-Home-cn-US/CN8.PNG" alt="">
+            <img class="phone-device" src="iphone-frame.png" alt="">
+          </div>
+        </div>
+      </section>
+
+      <section id="features" aria-labelledby="features-title">
+        <div class="section-head">
+          <h2 id="features-title" data-i18n="featuresTitle">统一 · 整理 · 重新发现</h2>
+          <p data-i18n="featuresCopy">GridPlayer 不是流媒体平台，而是为你手中真实的音乐收藏打造的现代播放器。</p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 18.5v-7"></path>
+                <path d="M8.5 15a5 5 0 0 1 7 0"></path>
+                <path d="M5.5 12a9 9 0 0 1 13 0"></path>
+                <path d="M2.5 8.8a13.5 13.5 0 0 1 19 0"></path>
+                <path d="M12 19.5h.01"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="feature1Title">多种音乐来源</h3>
+            <p data-i18n="feature1Copy">本地音乐、WebDAV、NAS，以及 Emby、Jellyfin、Navidrome、Subsonic、WordPress 等私人服务器。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 7h10a4 4 0 0 1 4 4v1"></path>
+                <path d="M7 4 4 7l3 3"></path>
+                <path d="M20 17H10a4 4 0 0 1-4-4v-1"></path>
+                <path d="m17 20 3-3-3-3"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="feature2Title">智能曲库整理</h3>
+            <p data-i18n="feature2Copy">自动聚合歌曲、专辑与艺术家，智能识别重复歌曲，优先展示高质量版本。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M9 18V5l10-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="16" cy="16" r="3"></circle>
+              </svg>
+            </div>
+            <h3 data-i18n="feature3Title">音乐元数据解析</h3>
+            <p data-i18n="feature3Copy">本地音乐与 WebDAV 支持歌曲名、艺术家、专辑、封面和歌词解析，文件秒变完整资料库。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M17.5 19H8a5 5 0 1 1 1.2-9.85A6 6 0 0 1 20 13a3 3 0 0 1-2.5 6Z"></path>
+                <path d="M12 12v5"></path>
+                <path d="m9.8 14.2 2.2-2.2 2.2 2.2"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="feature4Title">个人数据同步</h3>
+            <p data-i18n="feature4Copy">收藏、歌单和播放历史可在不同音乐源之间关联，并通过 iCloud 在多设备同步。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3v10"></path>
+                <path d="m8 9 4 4 4-4"></path>
+                <path d="M5 17.5A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="feature5Title">离线与缓存播放</h3>
+            <p data-i18n="feature5Copy">远程音乐支持缓存播放，减少网络波动带来的影响，适合通勤、旅行场景。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M13 2 5 13h6l-1 9 8-12h-6l1-8Z"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="feature6Title">现代播放体验</h3>
+            <p data-i18n="feature6Copy">播放队列、最近播放、收藏管理、连续播放、后台播放、锁屏控制以及均衡器调节。</p>
+          </article>
+        </div>
+
+        <div class="source-tags" aria-label="Supported sources and formats">
+          <span class="tag">Local Music</span>
+          <span class="tag">WebDAV</span>
+          <span class="tag">NAS</span>
+          <span class="tag">Emby</span>
+          <span class="tag">Jellyfin</span>
+          <span class="tag">Navidrome</span>
+          <span class="tag">Subsonic</span>
+          <span class="tag">WordPress</span>
+          <span class="tag">FLAC</span>
+          <span class="tag">AAC</span>
+          <span class="tag">MP3</span>
+        </div>
+      </section>
+
+      <section id="screenshots" class="screenshots" aria-labelledby="screenshots-title">
+        <div class="section-head">
+          <h2 id="screenshots-title" data-i18n="screenshotsTitle">应用截图</h2>
+          <p data-i18n="screenshotsCopy">从曲库浏览到播放控制，用清晰的界面管理你的私人音乐收藏。</p>
+        </div>
+        <div class="screenshot-carousel">
+          <div class="screenshot-strip" id="screenshotTrack" tabindex="0" aria-label="App screenshots carousel">
+            <figure class="screenshot"><img data-shot="3" src="GridPlayer-iPhone-Home-cn-US/CN3.PNG" alt=""></figure>
+            <figure class="screenshot"><img data-shot="4" src="GridPlayer-iPhone-Home-cn-US/CN4.PNG" alt=""></figure>
+            <figure class="screenshot"><img data-shot="5" src="GridPlayer-iPhone-Home-cn-US/CN5.PNG" alt=""></figure>
+            <figure class="screenshot"><img data-shot="6" src="GridPlayer-iPhone-Home-cn-US/CN6.PNG" alt=""></figure>
+            <figure class="screenshot"><img data-shot="7" src="GridPlayer-iPhone-Home-cn-US/CN7.PNG" alt=""></figure>
+            <figure class="screenshot"><img data-shot="8" src="GridPlayer-iPhone-Home-cn-US/CN8.PNG" alt=""></figure>
+            <figure class="screenshot"><img data-shot="9" src="GridPlayer-iPhone-Home-cn-US/CN9.PNG" alt=""></figure>
+            <figure class="screenshot"><img data-shot="10" src="GridPlayer-iPhone-Home-cn-US/CN10.PNG" alt=""></figure>
+          </div>
+          <div class="carousel-controls" aria-label="Screenshot controls">
+            <button class="carousel-button" type="button" data-carousel="prev" aria-label="Previous screenshot">‹</button>
+            <button class="carousel-button" type="button" data-carousel="next" aria-label="Next screenshot">›</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="cta-block">
+        <h2 data-i18n="ctaTitle">Own your music. Organize it beautifully.</h2>
+        <p data-i18n="ctaCopy">统一管理本地音乐、WebDAV 与私人音乐服务器的现代音乐播放器。</p>
+        <a href="https://garycny.github.io/gridplayer-legal/support.html" class="btn btn-primary" data-i18n="ctaAction">获取支持</a>
       </div>
-    </section>
+    </main>
 
-    <div class="cta-block">
-      <h2>Own your music. Organize it beautifully.</h2>
-      <p>统一管理本地音乐、WebDAV 与私人音乐服务器的现代音乐播放器。</p>
-      <a href="https://garycny.github.io/gridplayer-legal/support.html" class="btn btn-primary">获取支持</a>
-    </div>
-  </main>
+    <footer>
+      <div>© <span id="year"></span> GridPlayer. <span data-i18n="rights">All rights reserved.</span></div>
+      <div>
+        <a href="https://garycny.github.io/gridplayer-legal/privacy.html" data-i18n="footerPrivacy">隐私政策</a>
+        <a href="https://garycny.github.io/gridplayer-legal/terms.html" data-i18n="footerTerms">服务协议</a>
+        <a href="https://garycny.github.io/gridplayer-legal/support.html" data-i18n="footerSupport">技术支持</a>
+      </div>
+    </footer>
+  </div>
 
-  <footer>
-    <div>© <span id="year"></span> GridPlayer. All rights reserved.</div>
-    <div>
-      <a href="https://garycny.github.io/gridplayer-legal/privacy.html">隐私政策</a>
-      <a href="https://garycny.github.io/gridplayer-legal/terms.html">服务协议</a>
-      <a href="https://garycny.github.io/gridplayer-legal/support.html">技术支持</a>
-    </div>
-  </footer>
-</div>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+  <script>
+    const content = {
+      zh: {
+        title: "GridPlayer - 格子播放器",
+        description: "GridPlayer 是一款为个人音乐收藏而设计的现代 iOS 音乐播放器，支持本地音乐、WebDAV、NAS、Emby、Jellyfin、Navidrome、Subsonic 等多种音乐来源。",
+        brandSubtitle: "格子播放器",
+        navFeatures: "功能",
+        navScreenshots: "截图",
+        navSupport: "技术支持",
+        navPrivacy: "隐私政策",
+        navTerms: "服务协议",
+        badge: "私人音乐库 · 完全掌控",
+        heroTitle: "为你的个人音乐收藏而生。",
+        heroCopy: "GridPlayer 是一款现代 iOS 音乐播放器，帮助你统一管理本地音乐、WebDAV、NAS 以及私人音乐服务器上的所有音乐内容。",
+        primaryAction: "探索功能",
+        secondaryAction: "联系支持",
+        featuresTitle: "统一 · 整理 · 重新发现",
+        featuresCopy: "GridPlayer 不是流媒体平台，而是为你手中真实的音乐收藏打造的现代播放器。",
+        feature1Title: "多种音乐来源",
+        feature1Copy: "本地音乐、WebDAV、NAS，以及 Emby、Jellyfin、Navidrome、Subsonic、WordPress 等私人服务器。",
+        feature2Title: "智能曲库整理",
+        feature2Copy: "自动聚合歌曲、专辑与艺术家，智能识别重复歌曲，优先展示高质量版本。",
+        feature3Title: "音乐元数据解析",
+        feature3Copy: "本地音乐与 WebDAV 支持歌曲名、艺术家、专辑、封面和歌词解析，文件秒变完整资料库。",
+        feature4Title: "个人数据同步",
+        feature4Copy: "收藏、歌单和播放历史可在不同音乐源之间关联，并通过 iCloud 在多设备同步。",
+        feature5Title: "离线与缓存播放",
+        feature5Copy: "远程音乐支持缓存播放，减少网络波动带来的影响，适合通勤、旅行场景。",
+        feature6Title: "现代播放体验",
+        feature6Copy: "播放队列、最近播放、收藏管理、连续播放、后台播放、锁屏控制以及均衡器调节。",
+        screenshotsTitle: "应用截图",
+        screenshotsCopy: "从曲库浏览到播放控制，用清晰的界面管理你的私人音乐收藏。",
+        ctaTitle: "Own your music. Organize it beautifully.",
+        ctaCopy: "统一管理本地音乐、WebDAV 与私人音乐服务器的现代音乐播放器。",
+        ctaAction: "获取支持",
+        rights: "All rights reserved.",
+        footerPrivacy: "隐私政策",
+        footerTerms: "服务协议",
+        footerSupport: "技术支持"
+      },
+      en: {
+        title: "GridPlayer - Personal Music Player",
+        description: "GridPlayer is a modern iOS music player for personal music collections, with support for local music, WebDAV, NAS, Emby, Jellyfin, Navidrome, Subsonic, and more.",
+        brandSubtitle: "Personal music player",
+        navFeatures: "Features",
+        navScreenshots: "Screenshots",
+        navSupport: "Support",
+        navPrivacy: "Privacy",
+        navTerms: "Terms",
+        badge: "Your private music library, fully under your control",
+        heroTitle: "Built for your personal music collection.",
+        heroCopy: "GridPlayer is a modern iOS music player that brings together local files, WebDAV, NAS, and private music servers such as Emby, Jellyfin, and Navidrome.",
+        primaryAction: "Explore features",
+        secondaryAction: "Contact support",
+        featuresTitle: "Unify, organize, and rediscover",
+        featuresCopy: "GridPlayer is not a streaming platform. It is a modern player for the music collection you already own.",
+        feature1Title: "Multiple music sources",
+        feature1Copy: "Play local music, WebDAV, NAS, and private servers including Emby, Jellyfin, Navidrome, Subsonic, and WordPress.",
+        feature2Title: "Smart library organization",
+        feature2Copy: "Automatically groups songs, albums, and artists, identifies duplicates, and prioritizes higher-quality versions.",
+        feature3Title: "Rich metadata parsing",
+        feature3Copy: "Local and WebDAV files can be parsed for title, artist, album, artwork, and lyrics, turning folders into a complete library.",
+        feature4Title: "Personal data sync",
+        feature4Copy: "Favorites, playlists, and play history can connect across sources and sync between devices through iCloud.",
+        feature5Title: "Offline cache playback",
+        feature5Copy: "Cache remote music for smoother listening when networks are unstable, whether you are commuting or traveling.",
+        feature6Title: "Modern playback experience",
+        feature6Copy: "Queue management, recently played, favorites, continuous playback, background audio, lock-screen controls, and equalizer support.",
+        screenshotsTitle: "App screenshots",
+        screenshotsCopy: "Browse, manage, and play your private music collection through a clean, focused interface.",
+        ctaTitle: "Own your music. Organize it beautifully.",
+        ctaCopy: "A modern music player for local files, WebDAV, and private music servers.",
+        ctaAction: "Get support",
+        rights: "All rights reserved.",
+        footerPrivacy: "Privacy Policy",
+        footerTerms: "Terms of Service",
+        footerSupport: "Support"
+      }
+    };
+
+    const screenshotFolders = {
+      zh: { folder: "GridPlayer-iPhone-Home-cn-US", prefix: "CN" },
+      en: { folder: "GridPlayer-iPhone-Home-en-US", prefix: "EN" }
+    };
+
+    function preferredLanguage() {
+      const urlLang = new URLSearchParams(window.location.search).get("lang");
+      const storedLang = localStorage.getItem("gridplayer-language");
+      const browserLang = navigator.language && navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
+      return ["zh", "en"].includes(urlLang) ? urlLang : (["zh", "en"].includes(storedLang) ? storedLang : browserLang);
+    }
+
+    function setLanguage(lang) {
+      const dictionary = content[lang] || content.zh;
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = dictionary.title;
+      document.querySelector('meta[name="description"]').setAttribute("content", dictionary.description);
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        node.textContent = dictionary[node.dataset.i18n] || "";
+      });
+
+      const shots = screenshotFolders[lang];
+      document.querySelectorAll("[data-shot]").forEach((img) => {
+        const number = img.dataset.shot;
+        img.src = `${shots.folder}/${shots.prefix}${number}.PNG`;
+        img.alt = `${dictionary.screenshotsTitle} ${number}`;
+      });
+
+      document.querySelectorAll("[data-lang-button]").forEach((button) => {
+        button.setAttribute("aria-pressed", button.dataset.langButton === lang ? "true" : "false");
+      });
+
+      localStorage.setItem("gridplayer-language", lang);
+    }
+
+    const screenshotTrack = document.getElementById("screenshotTrack");
+    const carouselButtons = document.querySelectorAll("[data-carousel]");
+
+    function screenshotStep() {
+      const firstCard = screenshotTrack.querySelector(".screenshot");
+      if (!firstCard) return screenshotTrack.clientWidth;
+      const gap = parseFloat(getComputedStyle(screenshotTrack).columnGap) || 0;
+      return firstCard.getBoundingClientRect().width + gap;
+    }
+
+    function updateCarouselButtons() {
+      const maxScroll = screenshotTrack.scrollWidth - screenshotTrack.clientWidth - 2;
+      const atStart = screenshotTrack.scrollLeft <= 2;
+      const atEnd = screenshotTrack.scrollLeft >= maxScroll;
+      carouselButtons.forEach((button) => {
+        button.disabled = button.dataset.carousel === "prev" ? atStart : atEnd;
+      });
+    }
+
+    carouselButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const direction = button.dataset.carousel === "next" ? 1 : -1;
+        screenshotTrack.scrollBy({ left: screenshotStep() * direction, behavior: "smooth" });
+      });
+    });
+
+    screenshotTrack.addEventListener("scroll", () => requestAnimationFrame(updateCarouselButtons));
+    screenshotTrack.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      const direction = event.key === "ArrowRight" ? 1 : -1;
+      screenshotTrack.scrollBy({ left: screenshotStep() * direction, behavior: "smooth" });
+    });
+    window.addEventListener("resize", updateCarouselButtons);
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelectorAll("[data-lang-button]").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.langButton));
+    });
+    setLanguage(preferredLanguage());
+    updateCarouselButtons();
+  </script>
 </body>
 </html>

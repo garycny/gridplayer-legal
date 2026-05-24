@@ -1,164 +1,389 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GridPlayer Support</title>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy / 隐私政策</title>
   <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f7f8fa;
+      --fg: #15171a;
+      --muted: #667085;
+      --card: #ffffff;
+      --line: #e6e8ec;
+      --accent: #2f80ed;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #101114;
+        --fg: #f2f4f7;
+        --muted: #a0a7b2;
+        --card: #191b20;
+        --line: #2a2e36;
+        --accent: #6aa6ff;
+      }
+    }
+
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-        "Helvetica Neue", sans-serif;
-      background: #0b0b0c;
-      color: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
     }
 
-    .container {
-      width: 100%;
-      max-width: 720px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 28px;
-      padding: 48px;
-      backdrop-filter: blur(20px);
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 18px 56px;
     }
 
-    .logo {
-      width: 72px;
-      height: 72px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #2f7cff, #6aa8ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      font-weight: 700;
-      margin-bottom: 28px;
-      box-shadow: 0 10px 40px rgba(47, 124, 255, 0.35);
+    header,
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 16px;
     }
 
     h1 {
-      font-size: 42px;
-      font-weight: 700;
-      letter-spacing: -1px;
-      margin-bottom: 12px;
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.25;
     }
 
-    .subtitle {
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 18px;
-      line-height: 1.7;
-      margin-bottom: 42px;
+    h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+      line-height: 1.35;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 20px;
-      padding: 24px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+    p {
+      margin: 8px 0;
+    }
+
+    ul {
+      margin: 8px 0 0;
+      padding-left: 22px;
+    }
+
+    li {
+      margin: 6px 0;
+    }
+
+    .muted {
+      color: var(--muted);
     }
 
     .label {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 10px;
+      display: inline-block;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      margin-bottom: 4px;
+      margin-top: 0;
     }
 
-    .value {
-      font-size: 18px;
-      line-height: 1.7;
+    .english-section,
+    .chinese-section {
+      margin-bottom: 20px;
     }
 
-    a {
-      color: #7db2ff;
-      text-decoration: none;
+    .english-section:last-child,
+    .chinese-section:last-child {
+      margin-bottom: 0;
     }
 
-    a:hover {
-      opacity: 0.85;
+    hr {
+      margin: 16px 0;
+      border: 0;
+      height: 1px;
+      background: var(--line);
     }
 
-    .footer {
-      margin-top: 40px;
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 14px;
-      text-align: center;
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        padding: 32px 24px;
+    @media (max-width: 720px) {
+      main {
+        padding: 18px 12px 40px;
       }
 
-      h1 {
-        font-size: 34px;
-      }
-
-      .subtitle {
-        font-size: 16px;
+      header,
+      section {
+        border-radius: 12px;
+        padding: 18px;
       }
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <div class="logo">G</div>
+  <main>
+    <header>
+      <h1>Privacy Policy / 隐私政策</h1>
+      <p class="muted">Updated: May 22, 2026</p>
+      <p class="muted">更新日期：2026年5月22日</p>
+    </header>
 
-    <h1>GridPlayer Support</h1>
-
-    <p class="subtitle">
-      Need help with GridPlayer?<br />
-      Feel free to contact us for support, feedback, or feature requests.
-    </p>
-
-    <div class="card">
-      <div class="label">Support Email</div>
-
-      <div class="value">
-        <a href="mailto:support@gridnet.top">
-          support@gridnet.top
-        </a>
+    <section>
+      <h2>1. Introduction / 引言</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>This Privacy Policy explains how GridPlayer - Music Player handles information when you use the app. We designed GridPlayer primarily as a local and personal-server music player. We do not operate a cloud music library service for your music files.</p>
       </div>
-    </div>
-
-    <div class="card">
-      <div class="label">Privacy Policy</div>
-
-      <div class="value">
-        <a href="https://garycny.github.io/gridplayer-legal/privacy.html">
-          View Privacy Policy
-        </a>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>本隐私政策说明格子播放器在您使用本应用时如何处理相关信息。格子播放器主要被设计为本地及个人服务器音乐播放器。我们不为您的音乐文件运营云端音乐资料库服务。</p>
       </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <div class="label">Terms of Service</div>
-
-      <div class="value">
-        <a href="https://garycny.github.io/gridplayer-legal/terms.html">
-          View Terms of Service
-        </a>
+    <section>
+      <h2>2. Information We Process / 我们处理的信息</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>Depending on how you use the app, GridPlayer may process the following information on your device:</p>
+        <ul>
+          <li>Music metadata, such as song title, artist, album, duration, year, genre, track number, cover image, lyrics, and file path.</li>
+          <li>Local music files or cached music files selected or downloaded by you.</li>
+          <li>Playlist, favorite, recent play, offline cache, and playback state data.</li>
+          <li>Server configuration, including server address, connection type, username, password, token, folder path, and related settings you enter.</li>
+          <li>Images you choose, such as custom artist portraits, playlist covers, or profile images.</li>
+          <li>Purchase entitlement status provided by Apple if paid subscriptions or lifetime purchases are enabled.</li>
+        </ul>
       </div>
-    </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>根据您的使用方式，格子播放器可能会在您的设备上处理以下信息：</p>
+        <ul>
+          <li>音乐元数据，例如歌曲名、艺术家、专辑、时长、年份、流派、音轨号、封面、歌词及文件路径。</li>
+          <li>您选择或下载的本地音乐文件或缓存音乐文件。</li>
+          <li>歌单、收藏、最近播放、离线缓存及播放状态数据。</li>
+          <li>您输入的服务器配置，包括服务器地址、连接类型、用户名、密码、令牌、文件夹路径及相关设置。</li>
+          <li>您选择的图片，例如自定义艺术家头像、歌单封面或个人资料图片。</li>
+          <li>如果启用付费订阅或买断功能，由 Apple 提供的购买权益状态。</li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="footer">
-      © 2026 GridPlayer
-    </div>
-  </div>
+    <section>
+      <h2>3. How Information Is Used / 信息用途</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>The information above is used to provide and improve app features, including:</p>
+        <ul>
+          <li>Playing music and displaying your music library.</li>
+          <li>Connecting to your selected local, WebDAV, SMB, Emby, Jellyfin, Navidrome, Subsonic-compatible, or other supported music sources.</li>
+          <li>Managing playlists, favorites, albums, artists, covers, lyrics, search results, and offline cache.</li>
+          <li>Restoring your app settings and music library state on the same device.</li>
+          <li>Verifying paid feature access through Apple purchase systems when subscriptions or lifetime purchases are available.</li>
+        </ul>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>上述信息用于提供和改进应用功能，包括：</p>
+        <ul>
+          <li>播放音乐并展示您的音乐资料库。</li>
+          <li>连接您选择的本地、WebDAV、SMB、Emby、Jellyfin、Navidrome、Subsonic 兼容或其他支持的音乐来源。</li>
+          <li>管理歌单、收藏、专辑、艺术家、封面、歌词、搜索结果及离线缓存。</li>
+          <li>在同一设备上恢复您的应用设置和音乐资料库状态。</li>
+          <li>在订阅或买断功能可用时，通过 Apple 购买系统验证付费功能访问权限。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Local Storage and Device Processing / 本地存储与设备端处理</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>Most app data is stored and processed locally on your device, including music metadata, playlists, favorites, cached files, covers, local artist portraits, and server settings. Some information may be stored in iOS-provided storage mechanisms such as the app sandbox, local database, UserDefaults, or Keychain where applicable.</p>
+        <p>If you delete the app, reset configuration, clear cache, or remove related files, the corresponding local data may be deleted and may not be recoverable.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>本应用的大部分数据会在您的设备本地存储和处理，包括音乐元数据、歌单、收藏、缓存文件、封面、本地艺术家头像及服务器设置。部分信息可能会根据功能需要存储于 iOS 提供的应用沙盒、本地数据库、UserDefaults 或 Keychain 等机制中。</p>
+        <p>如果您删除应用、重置配置、清理缓存或移除相关文件，对应的本地数据可能会被删除且无法恢复。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Network Access and Third-Party Services / 网络访问与第三方服务</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>When you connect to a server or music source, the app communicates with the server address you provide. Your server credentials and media requests are sent to that selected server as necessary for login, scanning, metadata loading, streaming, downloading, and playback.</p>
+        <p>GridPlayer does not control your third-party or self-hosted servers. Those services may collect or process information according to their own policies. Please review the privacy practices of any service you connect to.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>当您连接服务器或音乐来源时，本应用会与您提供的服务器地址通信。为完成登录、扫描、加载元数据、串流、下载和播放功能，您的服务器凭据及媒体请求会按需发送至您选择的服务器。</p>
+        <p>格子播放器不控制您使用的第三方或自托管服务器。这些服务可能会依据其自身政策收集或处理信息。请您自行了解所连接服务的隐私做法。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Apple Payments and Subscriptions / Apple 支付与订阅</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>If paid subscriptions or lifetime purchases are added, payments will be processed by Apple App Store. We do not receive or store your full payment card number. Apple may provide us with limited transaction or entitlement information needed to unlock paid features, restore purchases, manage subscription status, and comply with App Store requirements.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>如果未来加入付费订阅或终身买断，付款将由 Apple App Store 处理。我们不会接收或存储您的完整支付卡号。Apple 可能会向我们提供用于解锁付费功能、恢复购买、管理订阅状态及满足 App Store 要求所需的有限交易或权益信息。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>7. Permissions / 权限说明</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>The app may request permissions only when needed for specific features, such as:</p>
+        <ul>
+          <li>Local network access: to discover or connect to servers on your local network.</li>
+          <li>Files or media access: to import, scan, or play music files selected by you.</li>
+          <li>Photos access: to choose images for artist portraits, playlist covers, or profile images.</li>
+          <li>Network access: to connect to your configured music sources and load media content.</li>
+        </ul>
+        <p>You can manage permissions in iOS Settings. Disabling permissions may affect related features.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>本应用仅会在特定功能需要时请求权限，例如：</p>
+        <ul>
+          <li>本地网络权限：用于发现或连接您本地网络中的服务器。</li>
+          <li>文件或媒体访问权限：用于导入、扫描或播放您选择的音乐文件。</li>
+          <li>照片访问权限：用于选择艺术家头像、歌单封面或个人资料图片。</li>
+          <li>网络访问权限：用于连接您配置的音乐来源并加载媒体内容。</li>
+        </ul>
+        <p>您可以在 iOS 设置中管理权限。关闭相关权限可能会影响对应功能。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>8. Data Sharing / 信息共享</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>We do not sell your personal information. We do not upload your music files to our own server as part of the core music playback features. Information may be shared only in the following limited situations:</p>
+        <ul>
+          <li>With servers or services you choose to connect, as required to provide app features.</li>
+          <li>With Apple, for App Store payments, subscriptions, purchase restoration, crash diagnostics, and platform services subject to Apple policies.</li>
+          <li>When required by applicable law, legal process, or enforceable government request.</li>
+          <li>With your consent or at your direction.</li>
+        </ul>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>我们不会出售您的个人信息。作为核心音乐播放功能的一部分，我们不会将您的音乐文件上传到我们自己的服务器。仅在以下有限情况下可能共享信息：</p>
+        <ul>
+          <li>为提供应用功能，与您选择连接的服务器或服务进行必要通信。</li>
+          <li>与 Apple 共享，用于 App Store 支付、订阅、恢复购买、崩溃诊断及平台服务，并受 Apple 政策约束。</li>
+          <li>根据适用法律、法律程序或具有执行力的政府请求而需要披露。</li>
+          <li>在获得您同意或由您主动指示的情况下。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>9. Analytics and Diagnostics / 分析与诊断</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>GridPlayer may rely on Apple-provided diagnostics, crash logs, and App Store analytics if you have enabled sharing with app developers in iOS settings. These reports are used to identify crashes, improve performance, and maintain app quality. They generally do not include your full music files, passwords, or complete server credentials.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>如果您在 iOS 设置中允许与开发者共享，格子播放器可能会使用 Apple 提供的诊断信息、崩溃日志及 App Store 分析数据。这些报告用于定位崩溃、改进性能并维护应用质量，通常不包含您的完整音乐文件、密码或完整服务器凭据。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>10. Security / 安全</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>We use reasonable technical and organizational measures to protect information handled by the app. However, no method of storage or transmission is completely secure. You are responsible for protecting your device, Apple ID, local network, and server accounts.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>我们会采取合理的技术和组织措施保护本应用处理的信息。然而，任何存储或传输方式都无法保证绝对安全。您应自行保护您的设备、Apple ID、本地网络及服务器账号。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>11. Data Retention and Deletion / 数据保留与删除</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>Local app data is generally retained on your device until you delete it, clear cache, reset configuration, remove the relevant music source, or uninstall the app. Data stored on your own servers is controlled by you or the server provider. Purchase records are handled according to Apple policies.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>本地应用数据通常会保留在您的设备上，直到您主动删除、清理缓存、重置配置、移除相关音乐来源或卸载应用。存储在您自有服务器上的数据由您或服务器提供方控制。购买记录按照 Apple 政策处理。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>12. Children's Privacy / 儿童隐私</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>GridPlayer is not directed to children under the age required by applicable law. If you are a minor, please use the app with the consent and supervision of your parent or legal guardian.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>格子播放器并非面向适用法律规定年龄以下的儿童。如果您是未成年人，请在父母或法定监护人同意和监督下使用本应用。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>13. International Use / 跨境使用</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>If you connect to servers located in other countries or regions, information may be transmitted to those locations at your direction. You are responsible for ensuring your use of connected services complies with applicable laws.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>如果您连接位于其他国家或地区的服务器，相关信息可能会根据您的指示传输至这些地点。您应确保自己使用所连接服务的行为符合适用法律。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>14. Changes to This Policy / 政策更新</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>We may update this Privacy Policy from time to time. The updated version will be indicated by the "Last Updated" date. Continued use of the app after changes means you accept the updated Privacy Policy.</p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>我们可能不时更新本隐私政策。更新后的版本将通过"最后更新日期"标明。政策更新后您继续使用本应用，即表示您接受更新后的隐私政策。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>15. Contact / 联系方式</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p>If you have questions or requests regarding this Privacy Policy, please contact us at:</p>
+        <p><a href="mailto:support@gridnet.top">support@gridnet.top</a></p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p>如果您对本隐私政策有任何问题或请求，请通过以下方式联系我们：</p>
+        <p><a href="mailto:support@gridnet.top">support@gridnet.top</a></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Online Version / 在线地址</h2>
+      <div class="english-section">
+        <div class="label">English</div>
+        <p><a href="https://garycny.github.io/gridplayer-legal/privacy.html">https://garycny.github.io/gridplayer-legal/privacy.html</a></p>
+      </div>
+      <div class="chinese-section">
+        <div class="label">中文</div>
+        <p><a href="https://garycny.github.io/gridplayer-legal/privacy.html">https://garycny.github.io/gridplayer-legal/privacy.html</a></p>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
