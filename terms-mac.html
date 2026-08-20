@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GridPlayer for Mac 用户协议">
-  <title>GridPlayer for Mac 用户协议</title>
+  <meta name="description" content="GridPlayer for Mac Terms of Use / 用户协议">
+  <title>GridPlayer for Mac Terms of Use / 用户协议</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
     :root {
@@ -130,12 +130,36 @@
     li { margin: 6px 0; color: rgba(246, 247, 251, 0.86); }
     a { color: #b9c7ff; }
     .muted { color: var(--muted); }
+    .language-tools { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+    .language-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .language-switch button {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .language-switch button[aria-pressed="true"] { color: var(--fg); background: rgba(255, 255, 255, 0.12); }
+    .language-panel[hidden] { display: none; }
 
     @media (max-width: 720px) {
       .page,
       main { width: min(100% - 36px, 980px); }
       main { padding: 18px 0 44px; }
       .site-header { flex-direction: column; align-items: flex-start; }
+      .language-tools { width: 100%; margin-left: 0; flex-wrap: wrap; }
       nav { width: 100%; }
       nav a { padding-inline: 10px; }
       .hero,
@@ -147,106 +171,80 @@
 <body>
   <div class="page">
     <header class="site-header">
-      <a href="gridplayer.html" class="brand" aria-label="GridPlayer 首页">
-        <img src="favicon.png" alt="GridPlayer 图标">
+      <a href="support-mac.html" class="brand" aria-label="GridPlayer for Mac support home">
+        <img src="favicon.png" alt="GridPlayer icon">
         <span>
           <strong>GridPlayer for Mac</strong>
-          <small>个人音乐资料库播放器</small>
+          <small>Personal Music Library Player</small>
         </span>
       </a>
-      <nav aria-label="法律页面导航">
-        <a href="privacy-mac.html">隐私政策</a>
-        <a href="terms-mac.html" aria-current="page">用户协议</a>
-        <a href="support.html">技术支持</a>
-      </nav>
+      <div class="language-tools">
+        <nav aria-label="Legal and support pages">
+          <a href="privacy-mac.html">Privacy</a>
+          <a href="terms-mac.html" aria-current="page">Terms</a>
+          <a href="support-mac.html">Support</a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Language">
+          <button type="button" data-language-button="en" aria-pressed="true">English</button>
+          <button type="button" data-language-button="zh-Hans" aria-pressed="false">简体中文</button>
+        </div>
+      </div>
     </header>
   </div>
 
   <main>
-    <header class="hero">
-      <h1>GridPlayer for Mac 用户协议</h1>
-      <p class="muted">生效日期：2026 年 8 月 1 日</p>
-    </header>
+    <article class="language-panel" data-language-panel="en" lang="en">
+      <header class="hero"><h1>GridPlayer for Mac Terms of Use</h1><p class="muted">Effective August 1, 2026</p></header>
+      <section><h2>1. Acceptance</h2><p>By downloading, installing, accessing, or using GridPlayer for Mac, you confirm that you have read, understood, and agreed to these Terms of Use. If you do not agree, stop using and uninstall the app.</p></section>
+      <section><h2>2. Service Description</h2><p>GridPlayer is a music player and personal-library manager. The current release can read local music folders you select, connect to Navidrome or compatible Subsonic personal servers, and provide library browsing, search, favorites, playback, artwork, lyrics, and related management features.</p><p>GridPlayer does not operate a music catalog, sell or provide third-party music, or guarantee compatibility with every file, codec, or server implementation.</p></section>
+      <section><h2>3. License</h2><p>Subject to these terms, the developer grants you a limited, non-exclusive, non-transferable license to install and use GridPlayer on compatible Macs you own or control. Except where applicable law expressly permits, this license does not allow copying, resale, rental, sublicensing, or derivative works.</p></section>
+      <section><h2>4. Music Rights and Authorization</h2><p>You must have the right to access, scan, cache, download, and play files or server content added to GridPlayer and must comply with copyright, licenses, and local law. GridPlayer does not obtain rights to music, lyrics, artwork, or other media for you.</p><p>You are responsible for unauthorized content you add, access, or use.</p></section>
+      <section><h2>5. Server Accounts and Credentials</h2><p>You are responsible for the accuracy, legality, and security of server addresses, usernames, passwords, and configuration. The app may store server settings locally and passwords in macOS Keychain. Protect your device, network, and accounts; responsibility for credential exposure or misconfiguration remains with the responsible party.</p></section>
+      <section><h2>6. Third-Party and Self-Hosted Services</h2><p>Navidrome, Subsonic, and other connected services are operated by third parties or by you. GridPlayer does not control their availability, security, content, data practices, or pricing and is not responsible for outages, API changes, account restrictions, or data loss. Their own terms and privacy policies may also apply.</p></section>
+      <section><h2>7. Library Operations and Backups</h2><p>Hiding, automatic deduplication, and source removal change only GridPlayer’s library state and do not delete original files on folders or servers. App indexes, cache, favorites, and settings can still be lost through data deletion, uninstall, disk failure, or version issues. Maintain independent backups of important music, server content, and configuration.</p></section>
+      <section><h2>8. Prohibited Conduct</h2><p>You may not use the app for unlawful, infringing, harmful, or unauthorized purposes; access, copy, distribute, or play content without appropriate rights; bypass access controls or interfere with the app or third-party services; probe, attack, or abuse network services or distribute malicious code; or reverse engineer, crack, or create derivative products except where law expressly permits.</p></section>
+      <section><h2>9. Feature Changes and Availability</h2><p>The developer may update, adjust, suspend, or remove features for security, compatibility, legal requirements, or product improvement. Servers, networks, permissions, media formats, and hardware can affect scanning, sync, and playback. Uninterrupted or error-free operation is not guaranteed.</p></section>
+      <section><h2>10. Disclaimer</h2><p>To the maximum extent permitted by applicable law, GridPlayer is provided “as is” and “as available.” The developer does not guarantee fitness for every purpose, compatibility with every server or file, or permanent retention of indexes, cache, metadata, artwork, lyrics, favorites, or settings. Non-excludable consumer rights remain unaffected.</p></section>
+      <section><h2>11. Limitation of Liability</h2><p>To the maximum extent permitted by applicable law, the developer is not liable for indirect, incidental, special, or consequential loss resulting from your device, account, server, network, third-party services, unauthorized content, or failure to maintain backups. Mandatory legal requirements prevail where applicable.</p></section>
+      <section><h2>12. Termination</h2><p>You may stop using and uninstall the app at any time. Where permitted by law, the developer may terminate the license or take necessary action if you materially violate these terms, abuse the app, or use it for unlawful activity. Back up information you want to retain before uninstalling.</p></section>
+      <section><h2>13. Governing Law</h2><p>These terms are governed by the laws of the People’s Republic of China without limiting mandatory consumer protections in your location. Disputes should first be addressed through good-faith discussion; mandatory jurisdiction rules remain applicable.</p></section>
+      <section><h2>14. Updates and Contact</h2><p>These terms are effective August 1, 2026. They may be updated as product features or legal requirements change, and updated versions will state their effective date. Continued use after an update constitutes acceptance. Contact: <a href="mailto:support@gridnet.top">support@gridnet.top</a>.</p></section>
+    </article>
 
-    <section>
-      <h2>1. 接受协议</h2>
-      <p>下载、安装、访问或使用 GridPlayer for Mac，即表示你已阅读、理解并同意受本用户协议约束。如果你不同意本协议，请停止使用并卸载应用。</p>
-    </section>
-
-    <section>
-      <h2>2. 服务说明</h2>
-      <p>GridPlayer 是一款音乐播放与个人资料库管理应用。当前版本可读取你主动选择的本地音乐目录，连接 Navidrome 或兼容的 Subsonic 个人音乐服务器，并提供资料库浏览、搜索、收藏、播放、封面、歌词及相关管理功能。</p>
-      <p>GridPlayer 不运营音乐内容目录，不销售或提供第三方音乐，也不承诺兼容所有文件、编码格式或服务器实现。</p>
-    </section>
-
-    <section>
-      <h2>3. 使用许可</h2>
-      <p>在你遵守本协议的前提下，开发者授予你一项有限的、非独占的、不可转让的许可，用于在你拥有或控制的兼容 Mac 上安装和使用 GridPlayer。除适用法律明确允许外，本许可不包含复制、转售、出租、再许可或制作衍生产品的权利。</p>
-    </section>
-
-    <section>
-      <h2>4. 音乐内容与授权责任</h2>
-      <p>你应确保自己有权访问、扫描、缓存、下载和播放添加到 GridPlayer 的文件或服务器内容，并自行遵守版权、许可和所在地法律。GridPlayer 不会替你取得音乐、歌词、封面或其他媒体内容的授权。</p>
-      <p>因你添加、访问或使用未经授权内容所产生的责任，由你自行承担。</p>
-    </section>
-
-    <section>
-      <h2>5. 服务器账号与凭据</h2>
-      <p>你应对所填写服务器地址、用户名、密码及配置的准确性、合法性和安全性负责。应用可能在本机保存服务器配置，并使用 macOS 钥匙串保存密码。请保护你的设备、局域网和服务器账户；因凭据泄露或配置不当造成的损失由相应责任方承担。</p>
-    </section>
-
-    <section>
-      <h2>6. 第三方与自托管服务</h2>
-      <p>Navidrome、Subsonic 及你连接的其他服务由第三方或你本人运营。GridPlayer 不控制这些服务的可用性、安全性、内容、数据处理或收费方式，也不对其停机、接口变化、账号限制或数据丢失负责。你可能还需要遵守相应服务自身的协议和隐私政策。</p>
-    </section>
-
-    <section>
-      <h2>7. 资料库操作与数据备份</h2>
-      <p>当前版本中的隐藏、自动去重和移除音乐源只改变应用内资料库状态，不删除源目录或服务器中的原始音乐。但应用索引、缓存、收藏和设置仍可能因清除数据、卸载、磁盘故障或版本问题而丢失。你应为重要音乐文件、服务器内容和配置维护独立备份。</p>
-    </section>
-
-    <section>
-      <h2>8. 禁止行为</h2>
-      <p>你不得：</p>
-      <ul>
-        <li>将应用用于违法、侵权、有害或未经授权的目的；</li>
-        <li>在没有适当权利的情况下访问、复制、传播或播放内容；</li>
-        <li>绕过服务器访问控制或干扰应用及第三方服务的正常运行；</li>
-        <li>探测、攻击、滥用网络服务或传播恶意代码；</li>
-        <li>除法律明确允许外，对应用进行反编译、破解或制作衍生产品。</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>9. 功能变更与可用性</h2>
-      <p>开发者可能为安全、兼容性、法律要求或产品改进而更新、调整、暂停或移除功能。服务器、网络、系统权限、媒体格式与硬件环境都可能影响扫描、同步和播放效果，应用不保证始终不中断或完全无错误。</p>
-    </section>
-
-    <section>
-      <h2>10. 免责声明</h2>
-      <p>在适用法律允许的最大范围内，GridPlayer 按“现状”和“可用状态”提供。开发者不保证应用适用于你的全部用途，不保证兼容每一种服务器或文件，也不保证任何索引、缓存、元数据、封面、歌词、收藏或设置永久保留。法律规定不得排除的消费者权利不受本条影响。</p>
-    </section>
-
-    <section>
-      <h2>11. 责任限制</h2>
-      <p>在适用法律允许的最大范围内，开发者不对因你的设备、账号、服务器、网络、第三方服务、未授权内容或未维护备份而产生的间接、附带、特殊或后果性损失负责。若适用法律另有强制规定，则以该规定为准。</p>
-    </section>
-
-    <section>
-      <h2>12. 终止使用</h2>
-      <p>你可以随时停止使用并卸载应用。若你严重违反本协议、滥用应用或利用应用从事违法活动，开发者可在法律允许范围内终止相关许可或采取必要措施。卸载前请自行备份需要保留的数据。</p>
-    </section>
-
-    <section>
-      <h2>13. 适用法律</h2>
-      <p>本协议适用中华人民共和国法律，但不影响你所在地强制性消费者保护法律赋予的权利。因本协议产生的争议应优先通过友好协商解决；法律对管辖另有强制规定的，从其规定。</p>
-    </section>
-
-    <section>
-      <h2>14. 协议更新与联系方式</h2>
-      <p>产品功能或法律要求变化时，本协议可能更新；更新后的版本会注明生效日期。继续使用更新后的应用即表示接受更新内容。</p>
-      <p>相关问题请发送邮件至 <a href="mailto:support@gridnet.top">support@gridnet.top</a>。</p>
-    </section>
+    <article class="language-panel" data-language-panel="zh-Hans" lang="zh-Hans" hidden>
+      <header class="hero"><h1>GridPlayer for Mac 用户协议</h1><p class="muted">生效日期：2026 年 8 月 1 日</p></header>
+      <section><h2>1. 接受协议</h2><p>下载、安装、访问或使用 GridPlayer for Mac，即表示你已阅读、理解并同意受本用户协议约束。如果你不同意本协议，请停止使用并卸载应用。</p></section>
+      <section><h2>2. 服务说明</h2><p>GridPlayer 是一款音乐播放与个人资料库管理应用。当前版本可读取你主动选择的本地音乐目录，连接 Navidrome 或兼容的 Subsonic 个人音乐服务器，并提供资料库浏览、搜索、收藏、播放、封面、歌词及相关管理功能。</p><p>GridPlayer 不运营音乐内容目录，不销售或提供第三方音乐，也不承诺兼容所有文件、编码格式或服务器实现。</p></section>
+      <section><h2>3. 使用许可</h2><p>在你遵守本协议的前提下，开发者授予你一项有限的、非独占的、不可转让的许可，用于在你拥有或控制的兼容 Mac 上安装和使用 GridPlayer。除适用法律明确允许外，本许可不包含复制、转售、出租、再许可或制作衍生产品的权利。</p></section>
+      <section><h2>4. 音乐内容与授权责任</h2><p>你应确保自己有权访问、扫描、缓存、下载和播放添加到 GridPlayer 的文件或服务器内容，并自行遵守版权、许可和所在地法律。GridPlayer 不会替你取得音乐、歌词、封面或其他媒体内容的授权。</p><p>因你添加、访问或使用未经授权内容所产生的责任，由你自行承担。</p></section>
+      <section><h2>5. 服务器账号与凭据</h2><p>你应对所填写服务器地址、用户名、密码及配置的准确性、合法性和安全性负责。应用可能在本机保存服务器配置，并使用 macOS 钥匙串保存密码。请保护你的设备、局域网和服务器账户；因凭据泄露或配置不当造成的损失由相应责任方承担。</p></section>
+      <section><h2>6. 第三方与自托管服务</h2><p>Navidrome、Subsonic 及你连接的其他服务由第三方或你本人运营。GridPlayer 不控制这些服务的可用性、安全性、内容、数据处理或收费方式，也不对其停机、接口变化、账号限制或数据丢失负责。你可能还需要遵守相应服务自身的协议和隐私政策。</p></section>
+      <section><h2>7. 资料库操作与数据备份</h2><p>当前版本中的隐藏、自动去重和移除音乐源只改变应用内资料库状态，不删除源目录或服务器中的原始音乐。但应用索引、缓存、收藏和设置仍可能因清除数据、卸载、磁盘故障或版本问题而丢失。你应为重要音乐文件、服务器内容和配置维护独立备份。</p></section>
+      <section><h2>8. 禁止行为</h2><p>你不得：</p><ul><li>将应用用于违法、侵权、有害或未经授权的目的；</li><li>在没有适当权利的情况下访问、复制、传播或播放内容；</li><li>绕过服务器访问控制或干扰应用及第三方服务的正常运行；</li><li>探测、攻击、滥用网络服务或传播恶意代码；</li><li>除法律明确允许外，对应用进行反编译、破解或制作衍生产品。</li></ul></section>
+      <section><h2>9. 功能变更与可用性</h2><p>开发者可能为安全、兼容性、法律要求或产品改进而更新、调整、暂停或移除功能。服务器、网络、系统权限、媒体格式与硬件环境都可能影响扫描、同步和播放效果，应用不保证始终不中断或完全无错误。</p></section>
+      <section><h2>10. 免责声明</h2><p>在适用法律允许的最大范围内，GridPlayer 按“现状”和“可用状态”提供。开发者不保证应用适用于你的全部用途，不保证兼容每一种服务器或文件，也不保证任何索引、缓存、元数据、封面、歌词、收藏或设置永久保留。法律规定不得排除的消费者权利不受本条影响。</p></section>
+      <section><h2>11. 责任限制</h2><p>在适用法律允许的最大范围内，开发者不对因你的设备、账号、服务器、网络、第三方服务、未授权内容或未维护备份而产生的间接、附带、特殊或后果性损失负责。若适用法律另有强制规定，则以该规定为准。</p></section>
+      <section><h2>12. 终止使用</h2><p>你可以随时停止使用并卸载应用。若你严重违反本协议、滥用应用或利用应用从事违法活动，开发者可在法律允许范围内终止相关许可或采取必要措施。卸载前请自行备份需要保留的数据。</p></section>
+      <section><h2>13. 适用法律</h2><p>本协议适用中华人民共和国法律，但不影响你所在地强制性消费者保护法律赋予的权利。因本协议产生的争议应优先通过友好协商解决；法律对管辖另有强制规定的，从其规定。</p></section>
+      <section><h2>14. 协议更新与联系方式</h2><p>本协议自 2026 年 8 月 1 日起生效。产品功能或法律要求变化时，本协议可能更新；更新后的版本会注明生效日期。继续使用更新后的应用即表示接受更新内容。相关问题请联系：<a href="mailto:support@gridnet.top">support@gridnet.top</a>。</p></section>
+    </article>
   </main>
+  <script>
+    (() => {
+      const key = "gridplayer-mac-site-language";
+      const buttons = [...document.querySelectorAll("[data-language-button]")];
+      const panels = [...document.querySelectorAll("[data-language-panel]")];
+      const select = language => {
+        panels.forEach(panel => { panel.hidden = panel.dataset.languagePanel !== language; });
+        buttons.forEach(button => { button.setAttribute("aria-pressed", String(button.dataset.languageButton === language)); });
+        document.documentElement.lang = language;
+        try { localStorage.setItem(key, language); } catch (_) {}
+      };
+      buttons.forEach(button => button.addEventListener("click", () => select(button.dataset.languageButton)));
+      let saved;
+      try { saved = localStorage.getItem(key); } catch (_) {}
+      select(saved === "zh-Hans" || saved === "en" ? saved : (navigator.language.toLowerCase().startsWith("zh") ? "zh-Hans" : "en"));
+    })();
+  </script>
 </body>
 </html>

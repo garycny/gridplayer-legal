@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GridPlayer for Mac 隐私政策">
-  <title>GridPlayer for Mac 隐私政策</title>
+  <meta name="description" content="GridPlayer for Mac Privacy Policy / 隐私政策">
+  <title>GridPlayer for Mac Privacy Policy / 隐私政策</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
     :root {
@@ -130,12 +130,39 @@
     li { margin: 6px 0; color: rgba(246, 247, 251, 0.86); }
     a { color: #b9c7ff; }
     .muted { color: var(--muted); }
+    .language-tools { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+    .language-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .language-switch button {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .language-switch button[aria-pressed="true"] {
+      color: var(--fg);
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .language-panel[hidden] { display: none; }
 
     @media (max-width: 720px) {
       .page,
       main { width: min(100% - 36px, 980px); }
       main { padding: 18px 0 44px; }
       .site-header { flex-direction: column; align-items: flex-start; }
+      .language-tools { width: 100%; margin-left: 0; flex-wrap: wrap; }
       nav { width: 100%; }
       nav a { padding-inline: 10px; }
       .hero,
@@ -147,132 +174,84 @@
 <body>
   <div class="page">
     <header class="site-header">
-      <a href="gridplayer.html" class="brand" aria-label="GridPlayer 首页">
-        <img src="favicon.png" alt="GridPlayer 图标">
+      <a href="support-mac.html" class="brand" aria-label="GridPlayer for Mac support home">
+        <img src="favicon.png" alt="GridPlayer icon">
         <span>
           <strong>GridPlayer for Mac</strong>
-          <small>个人音乐资料库播放器</small>
+          <small>Personal Music Library Player</small>
         </span>
       </a>
-      <nav aria-label="法律页面导航">
-        <a href="privacy-mac.html" aria-current="page">隐私政策</a>
-        <a href="terms-mac.html">用户协议</a>
-        <a href="support.html">技术支持</a>
-      </nav>
+      <div class="language-tools">
+        <nav aria-label="Legal and support pages">
+          <a href="privacy-mac.html" aria-current="page">Privacy</a>
+          <a href="terms-mac.html">Terms</a>
+          <a href="support-mac.html">Support</a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Language">
+          <button type="button" data-language-button="en" aria-pressed="true">English</button>
+          <button type="button" data-language-button="zh-Hans" aria-pressed="false">简体中文</button>
+        </div>
+      </div>
     </header>
   </div>
 
   <main>
-    <header class="hero">
-      <h1>GridPlayer for Mac 隐私政策</h1>
-      <p class="muted">生效日期：2026 年 8 月 11 日</p>
-    </header>
+    <article class="language-panel" data-language-panel="en" lang="en">
+      <header class="hero"><h1>GridPlayer for Mac Privacy Policy</h1><p class="muted">Effective August 11, 2026</p></header>
+      <section><h2>1. Introduction and Scope</h2><p>This Privacy Policy explains how GridPlayer for Mac handles information when you use the app. GridPlayer is a local-first player for personal music libraries and does not operate a developer-hosted cloud library for your music files.</p><p>This policy applies to the current release of GridPlayer for Mac. Navidrome, Subsonic, and other self-hosted services you connect remain subject to their operators’ privacy policies and configurations.</p></section>
+      <section><h2>2. Information Processed on This Mac</h2><p>Depending on the features you enable, the app may process music files and paths you select; song, artist, album, duration, year, genre, artwork, and lyrics metadata; favorites, recent plays, playback state, hidden songs, albums and artists, and deduplication results; server addresses, types, display names, usernames, and sync state; and theme, accent color, playback mode, and other preferences.</p><p>This information is used to build and present your personal music library and is not published as public content.</p></section>
+      <section><h2>3. How Information Is Used</h2><p>The information is used only to scan and display your library, play music, show artwork and lyrics, preserve app state, provide search and recommendations, connect to personal music servers, and restore settings on the same Mac.</p><p>GridPlayer does not use this information for advertising profiles or to train models operated by the developer.</p></section>
+      <section><h2>4. Local Storage and On-Device Processing</h2><p>The music index, favorites, play history, hidden state, settings, and cache are primarily stored in the app sandbox using Application Support, Caches, or UserDefaults. Server passwords are stored in macOS Keychain and are not written in plain text to library files.</p><p>Artwork and lyrics may be cached locally to improve loading and reduce repeated network requests. This rebuildable cache can be cleared from Storage.</p></section>
+      <section><h2>5. Local Files and Folder Permission</h2><p>GridPlayer accesses only folders you explicitly select through the macOS file picker. It scans and plays music with read-only access and does not modify or delete original music files.</p><p>macOS may store a security-scoped bookmark so the app can reopen the same folder after relaunch. You can remove a music source in the app or revoke permission in System Settings.</p></section>
+      <section><h2>6. Personal Music Servers and Network Requests</h2><p>When you add a Navidrome or compatible Subsonic server, authentication, library sync, artwork, lyrics, and audio requests are sent directly from this Mac to the server you configured. The developer does not proxy these requests or receive your password or media.</p><p>HTTPS is recommended. Plain HTTP is allowed only for local or private-network addresses, and the app warns you before making an unencrypted connection. Server operators may log requests under their own policies.</p></section>
+      <section><h2>7. System Permissions</h2><p>GridPlayer uses permissions only when required: file access to read selected music folders; local-network access to connect to personal servers; network-client access to load music, artwork, and lyrics; and Media &amp; Apple Music access only when you enable artist artwork matching.</p><p>Denying a permission affects only features that depend on it. You can change permissions in macOS System Settings.</p></section>
+      <section><h2>8. Optional Apple Music Artist Artwork Matching</h2><p>Artist artwork matching is off by default. After you enable it and grant Media &amp; Apple Music access, GridPlayer sends artist names and limited representative song and album names to the Apple Music catalog to identify artists and locate artwork. A search query you edit manually is also sent to Apple Music. Music files, server credentials, favorites, and play history are not sent to Apple for this feature.</p><p>Matched artist identifiers, artwork URLs, confidence, evidence, status, time, and manual selections are stored locally to avoid repeated matching. Turning the feature off stops new matching but retains cached results; deleting all app data removes them. Apple processes catalog requests under Apple’s own privacy policy.</p></section>
+      <section><h2>9. Data Sharing and Third-Party SDKs</h2><p>The current release contains no third-party advertising SDK, behavioral analytics SDK, or cross-app tracking. The developer does not sell personal information or share music files, play history, search history, or credentials with advertising platforms, data brokers, or marketers.</p><p>Information is sent only when you connect a personal server, enable Apple Music matching, direct and consent to a disclosure, or disclosure is legally required.</p></section>
+      <section><h2>10. Apple Diagnostics and Platform Services</h2><p>If you allow sharing with developers in macOS, Apple may provide crash reports, performance diagnostics, or aggregated App Store analytics. Apple processes this information under its policies, and it is used to diagnose crashes and improve quality.</p><p>GridPlayer does not currently integrate a separate third-party crash reporting or analytics service.</p></section>
+      <section><h2>11. Security and Your Responsibilities</h2><p>GridPlayer uses App Sandbox, read-only file authorization, macOS Keychain, and restrictions on public plain-HTTP connections. No storage or transmission method can guarantee absolute security.</p><p>Protect your Mac account, local network, personal servers, and server accounts, and prefer HTTPS and strong passwords.</p></section>
+      <section><h2>12. Retention and Deletion</h2><p>Local information is generally retained until you remove a source, restore or delete state, clear cache, delete app data, or uninstall the app. Removing a source deletes its GridPlayer index and configuration, not original files on the folder or server.</p><p>For a complete local reset, remove sources, clear cache, and delete GridPlayer Application Support, Caches, and corresponding Keychain items. Server-side information is managed by you or the server operator.</p></section>
+      <section><h2>13. Children’s Privacy</h2><p>GridPlayer does not provide a developer-operated content catalog, social service, or targeted advertising and is not designed to collect children’s personal information. Minors should use the app with consent and supervision from a parent or legal guardian where required by law.</p></section>
+      <section><h2>14. Cross-Border Use</h2><p>If you connect a personal server in another country or region, authentication information, media requests, and streaming data may be transferred to that location at your direction. You are responsible for confirming that the server and your use comply with applicable law.</p></section>
+      <section><h2>15. Your Choices and Rights</h2><p>You can manage folders and servers, remove music sources, restore hidden songs, albums and artists, disable automatic deduplication, clear rebuildable cache, and revoke permissions in macOS System Settings. Contact the developer below with privacy, deletion, or policy questions.</p></section>
+      <section><h2>16. Policy Updates and Contact</h2><p>This policy is effective August 11, 2026. It may be updated with app releases when features, permissions, or data handling materially change. Contact: <a href="mailto:support@gridnet.top">support@gridnet.top</a>.</p></section>
+    </article>
 
-    <section>
-      <h2>1. 引言与适用范围</h2>
-      <p>本隐私政策说明 GridPlayer for Mac 在你使用应用时如何处理相关信息。GridPlayer 是一款本地优先、面向个人音乐资料库的播放器，不为你的音乐文件运营开发者云端资料库。</p>
-      <p>本政策适用于 GridPlayer for Mac 当前正式版本。你连接的 Navidrome、Subsonic 或其他自托管服务，仍受相应服务器运营者的隐私政策与配置约束。</p>
-    </section>
-
-    <section>
-      <h2>2. 应用在本机处理的信息</h2>
-      <p>根据你启用的功能，应用可能在这台 Mac 上处理：</p>
-      <ul>
-        <li>你主动选择的音乐文件及其文件路径；</li>
-        <li>歌曲名称、艺术家、专辑、时长、年份、流派、封面和歌词等元数据；</li>
-        <li>收藏、最近播放、播放状态、隐藏歌曲、隐藏专辑、隐藏艺术家及自动去重结果；</li>
-        <li>音乐服务器地址、类型、显示名称、用户名与同步状态；</li>
-        <li>主题、强调色、播放模式及其他应用偏好。</li>
-      </ul>
-      <p>这些信息用于建立和展示你的个人音乐资料库，不会作为公开内容发布。</p>
-    </section>
-
-    <section>
-      <h2>3. 信息的使用目的</h2>
-      <p>上述信息仅用于提供应用功能，包括扫描和展示音乐资料库、播放音乐、显示封面与歌词、保存使用状态、执行搜索与推荐、连接个人音乐服务器，以及恢复你在同一台 Mac 上的应用设置。</p>
-      <p>GridPlayer 不会使用这些信息建立广告画像，也不会将你的资料库用于训练开发者运营的模型。</p>
-    </section>
-
-    <section>
-      <h2>4. 本地存储与设备端处理</h2>
-      <p>音乐索引、收藏、播放记录、隐藏状态、设置和缓存主要保存在应用沙盒的 Application Support、Caches 或 UserDefaults 中。服务器密码保存在 macOS 钥匙串中，不会以明文写入资料库文件。</p>
-      <p>封面与歌词可能缓存在本机，以提升加载速度并减少重复网络请求。缓存属于可重建数据，可在“存储管理”中清除。</p>
-    </section>
-
-    <section>
-      <h2>5. 本地文件与目录权限</h2>
-      <p>GridPlayer 只通过 macOS 文件选择器访问你主动选择并授权的目录，并以只读方式扫描和播放其中的音乐。应用不会修改或删除原始音乐文件。</p>
-      <p>macOS 可能保存 security-scoped bookmark，以便应用重启后继续访问同一目录。你可以在应用中移除音乐源，或在系统设置中撤销相关权限。</p>
-    </section>
-
-    <section>
-      <h2>6. 个人音乐服务器与网络请求</h2>
-      <p>当你添加 Navidrome 或兼容的 Subsonic 服务器时，登录验证、资料库同步、封面、歌词和音频播放请求会从这台 Mac 直接发送到你配置的服务器。开发者不会代理这些请求，也不会接收你的服务器密码或媒体内容。</p>
-      <p>应用默认建议使用 HTTPS。只有本地或私有网络地址可以使用明文 HTTP，并且应用会在连接前明确提示传输未加密。服务器运营者可能依照自身政策记录网络请求，请自行确认其安全性与隐私做法。</p>
-    </section>
-
-    <section>
-      <h2>7. 系统权限</h2>
-      <p>GridPlayer 仅在对应功能需要时使用以下权限：</p>
-      <ul>
-        <li>文件访问：读取你主动选择的音乐目录；</li>
-        <li>本地网络：连接局域网中的个人音乐服务器；</li>
-        <li>网络客户端：连接你配置的服务器并加载音乐、封面和歌词；</li>
-        <li>媒体与 Apple Music：仅在你开启艺术家头像匹配时，查询 Apple Music 目录。</li>
-      </ul>
-      <p>拒绝某项权限只会影响依赖该权限的功能。你可以随时在 macOS“系统设置”中调整授权。</p>
-    </section>
-
-    <section>
-      <h2>8. 可选的 Apple Music 艺术家头像匹配</h2>
-      <p>“匹配艺术家头像”默认关闭。只有在你主动开启并允许媒体与 Apple Music 访问后，GridPlayer 才会将资料库中的艺术家名称，以及用于确认艺术家身份的少量代表歌曲名称和专辑名称发送给 Apple Music 目录服务，用于查找对应艺术家和头像。你手动修改搜索词时，该搜索词也会发送给 Apple Music。应用不会因此向 Apple 发送音乐文件、个人服务器凭据、收藏或播放记录。</p>
-      <p>匹配到的 Apple Music 艺术家标识、头像地址、置信度、匹配证据、匹配状态和时间会保存在本机，用于避免每次启动都重新匹配。你手动选择的艺术家绑定也会保存在本机，并优先于自动匹配。关闭开关会停止新的匹配，但不会自动删除已有结果；删除全部应用数据会一并清除这些记录。Apple 对相关请求的处理受 Apple 自身隐私政策约束。</p>
-    </section>
-
-    <section>
-      <h2>9. 数据共享与第三方 SDK</h2>
-      <p>当前版本不包含第三方广告 SDK、行为分析 SDK 或跨应用跟踪技术。开发者不会出售你的个人信息，也不会把音乐文件、播放记录、搜索记录或服务器凭据分享给广告平台、数据经纪商或营销机构。</p>
-      <p>只有在你主动连接个人服务器、开启 Apple Music 艺术家头像匹配、按照法律要求必须披露，或获得你明确指示与同意的情况下，相关信息才可能发送至对应接收方。</p>
-    </section>
-
-    <section>
-      <h2>10. Apple 诊断与平台服务</h2>
-      <p>如果你在 macOS 中允许与开发者共享，Apple 可能向开发者提供崩溃报告、性能诊断或汇总的 App Store 分析信息。这些信息由 Apple 按其政策处理，用于定位崩溃和改善应用质量。</p>
-      <p>GridPlayer 当前不接入独立的第三方崩溃收集或分析服务。</p>
-    </section>
-
-    <section>
-      <h2>11. 安全措施与用户责任</h2>
-      <p>应用使用 App Sandbox、只读文件授权和 macOS 钥匙串等系统机制保护本地数据，并限制公网明文 HTTP 连接。但任何存储或网络传输方式都无法保证绝对安全。</p>
-      <p>请妥善保护你的 Mac 登录账户、局域网、个人服务器及其账号，并优先为服务器启用 HTTPS 和强密码。</p>
-    </section>
-
-    <section>
-      <h2>12. 数据保留与删除</h2>
-      <p>本地数据通常会保留到你移除音乐源、恢复或删除相应状态、清除缓存、删除应用数据或卸载应用为止。移除音乐源只删除 GridPlayer 中的索引和配置，不会删除源目录或服务器中的原始文件。</p>
-      <p>如需完整清除，可移除所有音乐源、清理缓存，并删除 GridPlayer 的 Application Support、Caches 数据和对应钥匙串项目。服务器端数据由你或服务器运营者管理。</p>
-    </section>
-
-    <section>
-      <h2>13. 未成年人隐私</h2>
-      <p>GridPlayer 不提供开发者运营的内容目录、社交服务或定向广告，也不会以收集儿童个人信息为目的。如果你属于适用法律规定的未成年人，请在父母或法定监护人同意和监督下使用应用。</p>
-    </section>
-
-    <section>
-      <h2>14. 跨境使用</h2>
-      <p>如果你主动连接位于其他国家或地区的个人服务器，相关登录信息、媒体请求和流媒体数据可能按照你的指示传输至该服务器所在地。你应自行确认服务器的运营方式及相关使用行为符合适用法律。</p>
-    </section>
-
-    <section>
-      <h2>15. 你的选择与权利</h2>
-      <p>你可以查看和管理已添加的目录及服务器，移除音乐源，恢复隐藏歌曲、专辑和艺术家，关闭自动去重，清除可重建缓存，并通过 macOS 系统设置撤销权限。</p>
-    </section>
-
-    <section>
-      <h2>16. 政策更新与联系方式</h2>
-      <p>当功能、权限或数据处理方式发生重要变化时，政策会随应用版本更新并修改生效日期。</p>
-      <p>如对隐私、数据删除或本政策有疑问，请发送邮件至 <a href="mailto:support@gridnet.top">support@gridnet.top</a>。</p>
-    </section>
+    <article class="language-panel" data-language-panel="zh-Hans" lang="zh-Hans" hidden>
+      <header class="hero"><h1>GridPlayer for Mac 隐私政策</h1><p class="muted">生效日期：2026 年 8 月 11 日</p></header>
+      <section><h2>1. 引言与适用范围</h2><p>本隐私政策说明 GridPlayer for Mac 在你使用应用时如何处理相关信息。GridPlayer 是一款本地优先、面向个人音乐资料库的播放器，不为你的音乐文件运营开发者云端资料库。</p><p>本政策适用于 GridPlayer for Mac 当前正式版本。你连接的 Navidrome、Subsonic 或其他自托管服务，仍受相应服务器运营者的隐私政策与配置约束。</p></section>
+      <section><h2>2. 应用在本机处理的信息</h2><p>根据你启用的功能，应用可能在这台 Mac 上处理：</p><ul><li>你主动选择的音乐文件及其文件路径；</li><li>歌曲名称、艺术家、专辑、时长、年份、流派、封面和歌词等元数据；</li><li>收藏、最近播放、播放状态、隐藏歌曲、隐藏专辑、隐藏艺术家及自动去重结果；</li><li>音乐服务器地址、类型、显示名称、用户名与同步状态；</li><li>主题、强调色、播放模式及其他应用偏好。</li></ul><p>这些信息用于建立和展示你的个人音乐资料库，不会作为公开内容发布。</p></section>
+      <section><h2>3. 信息的使用目的</h2><p>上述信息仅用于提供应用功能，包括扫描和展示音乐资料库、播放音乐、显示封面与歌词、保存使用状态、执行搜索与推荐、连接个人音乐服务器，以及恢复你在同一台 Mac 上的应用设置。</p><p>GridPlayer 不会使用这些信息建立广告画像，也不会将你的资料库用于训练开发者运营的模型。</p></section>
+      <section><h2>4. 本地存储与设备端处理</h2><p>音乐索引、收藏、播放记录、隐藏状态、设置和缓存主要保存在应用沙盒的 Application Support、Caches 或 UserDefaults 中。服务器密码保存在 macOS 钥匙串中，不会以明文写入资料库文件。</p><p>封面与歌词可能缓存在本机，以提升加载速度并减少重复网络请求。缓存属于可重建数据，可在“存储管理”中清除。</p></section>
+      <section><h2>5. 本地文件与目录权限</h2><p>GridPlayer 只通过 macOS 文件选择器访问你主动选择并授权的目录，并以只读方式扫描和播放其中的音乐。应用不会修改或删除原始音乐文件。</p><p>macOS 可能保存 security-scoped bookmark，以便应用重启后继续访问同一目录。你可以在应用中移除音乐源，或在系统设置中撤销相关权限。</p></section>
+      <section><h2>6. 个人音乐服务器与网络请求</h2><p>当你添加 Navidrome 或兼容的 Subsonic 服务器时，登录验证、资料库同步、封面、歌词和音频播放请求会从这台 Mac 直接发送到你配置的服务器。开发者不会代理这些请求，也不会接收你的服务器密码或媒体内容。</p><p>应用默认建议使用 HTTPS。只有本地或私有网络地址可以使用明文 HTTP，并且应用会在连接前明确提示传输未加密。服务器运营者可能依照自身政策记录网络请求，请自行确认其安全性与隐私做法。</p></section>
+      <section><h2>7. 系统权限</h2><p>GridPlayer 仅在对应功能需要时使用以下权限：</p><ul><li>文件访问：读取你主动选择的音乐目录；</li><li>本地网络：连接局域网中的个人音乐服务器；</li><li>网络客户端：连接你配置的服务器并加载音乐、封面和歌词；</li><li>媒体与 Apple Music：仅在你开启艺术家头像匹配时，查询 Apple Music 目录。</li></ul><p>拒绝某项权限只会影响依赖该权限的功能。你可以随时在 macOS“系统设置”中调整授权。</p></section>
+      <section><h2>8. 可选的 Apple Music 艺术家头像匹配</h2><p>“匹配艺术家头像”默认关闭。只有在你主动开启并允许媒体与 Apple Music 访问后，GridPlayer 才会将资料库中的艺术家名称，以及用于确认艺术家身份的少量代表歌曲名称和专辑名称发送给 Apple Music 目录服务，用于查找对应艺术家和头像。你手动修改搜索词时，该搜索词也会发送给 Apple Music。应用不会因此向 Apple 发送音乐文件、个人服务器凭据、收藏或播放记录。</p><p>匹配到的 Apple Music 艺术家标识、头像地址、置信度、匹配证据、匹配状态和时间会保存在本机，用于避免每次启动都重新匹配。你手动选择的艺术家绑定也会保存在本机，并优先于自动匹配。关闭开关会停止新的匹配，但不会自动删除已有结果；删除全部应用数据会一并清除这些记录。Apple 对相关请求的处理受 Apple 自身隐私政策约束。</p></section>
+      <section><h2>9. 数据共享与第三方 SDK</h2><p>当前版本不包含第三方广告 SDK、行为分析 SDK 或跨应用跟踪技术。开发者不会出售你的个人信息，也不会把音乐文件、播放记录、搜索记录或服务器凭据分享给广告平台、数据经纪商或营销机构。</p><p>只有在你主动连接个人服务器、开启 Apple Music 艺术家头像匹配、按照法律要求必须披露，或获得你明确指示与同意的情况下，相关信息才可能发送至对应接收方。</p></section>
+      <section><h2>10. Apple 诊断与平台服务</h2><p>如果你在 macOS 中允许与开发者共享，Apple 可能向开发者提供崩溃报告、性能诊断或汇总的 App Store 分析信息。这些信息由 Apple 按其政策处理，用于定位崩溃和改善应用质量。</p><p>GridPlayer 当前不接入独立的第三方崩溃收集或分析服务。</p></section>
+      <section><h2>11. 安全措施与用户责任</h2><p>应用使用 App Sandbox、只读文件授权和 macOS 钥匙串等系统机制保护本地数据，并限制公网明文 HTTP 连接。但任何存储或网络传输方式都无法保证绝对安全。</p><p>请妥善保护你的 Mac 登录账户、局域网、个人服务器及其账号，并优先为服务器启用 HTTPS 和强密码。</p></section>
+      <section><h2>12. 数据保留与删除</h2><p>本地数据通常会保留到你移除音乐源、恢复或删除相应状态、清除缓存、删除应用数据或卸载应用为止。移除音乐源只删除 GridPlayer 中的索引和配置，不会删除源目录或服务器中的原始文件。</p><p>如需完整清除，可移除所有音乐源、清理缓存，并删除 GridPlayer 的 Application Support、Caches 数据和对应钥匙串项目。服务器端数据由你或服务器运营者管理。</p></section>
+      <section><h2>13. 未成年人隐私</h2><p>GridPlayer 不提供开发者运营的内容目录、社交服务或定向广告，也不会以收集儿童个人信息为目的。如果你属于适用法律规定的未成年人，请在父母或法定监护人同意和监督下使用应用。</p></section>
+      <section><h2>14. 跨境使用</h2><p>如果你主动连接位于其他国家或地区的个人服务器，相关登录信息、媒体请求和流媒体数据可能按照你的指示传输至该服务器所在地。你应自行确认服务器的运营方式及相关使用行为符合适用法律。</p></section>
+      <section><h2>15. 你的选择与权利</h2><p>你可以查看和管理已添加的目录及服务器，移除音乐源，恢复隐藏歌曲、专辑和艺术家，关闭自动去重，清除可重建缓存，并通过 macOS 系统设置撤销权限。对于隐私、数据删除或本政策的问题，可通过下方联系方式与开发者沟通。</p></section>
+      <section><h2>16. 政策更新与联系方式</h2><p>本政策自 2026 年 8 月 11 日起生效。当功能、权限或数据处理方式发生重要变化时，政策会随应用版本更新并修改生效日期。联系邮箱：<a href="mailto:support@gridnet.top">support@gridnet.top</a>。</p></section>
+    </article>
   </main>
+  <script>
+    (() => {
+      const key = "gridplayer-mac-site-language";
+      const buttons = [...document.querySelectorAll("[data-language-button]")];
+      const panels = [...document.querySelectorAll("[data-language-panel]")];
+      const select = language => {
+        panels.forEach(panel => { panel.hidden = panel.dataset.languagePanel !== language; });
+        buttons.forEach(button => { button.setAttribute("aria-pressed", String(button.dataset.languageButton === language)); });
+        document.documentElement.lang = language;
+        try { localStorage.setItem(key, language); } catch (_) {}
+      };
+      buttons.forEach(button => button.addEventListener("click", () => select(button.dataset.languageButton)));
+      let saved;
+      try { saved = localStorage.getItem(key); } catch (_) {}
+      select(saved === "zh-Hans" || saved === "en" ? saved : (navigator.language.toLowerCase().startsWith("zh") ? "zh-Hans" : "en"));
+    })();
+  </script>
 </body>
 </html>

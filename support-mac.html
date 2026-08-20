@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GridPlayer for Mac 技术支持与常见问题">
-  <title>GridPlayer for Mac 技术支持</title>
+  <meta name="description" content="GridPlayer for Mac Support / 技术支持">
+  <title>GridPlayer for Mac Support / 技术支持</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
     :root {
@@ -112,12 +112,36 @@
     a { color: #b9c7ff; }
     .muted { color: var(--muted); }
     .contact { font-size: 18px; }
+    .language-tools { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+    .language-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .language-switch button {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .language-switch button[aria-pressed="true"] { color: var(--fg); background: rgba(255, 255, 255, 0.12); }
+    .language-panel[hidden] { display: none; }
 
     @media (max-width: 720px) {
       .page,
       main { width: min(100% - 36px, 980px); }
       main { padding: 18px 0 44px; }
       .site-header { flex-direction: column; align-items: flex-start; }
+      .language-tools { width: 100%; margin-left: 0; flex-wrap: wrap; }
       nav { width: 100%; }
       nav a { padding-inline: 10px; }
       .hero,
@@ -129,76 +153,76 @@
 <body>
   <div class="page">
     <header class="site-header">
-      <a href="support-mac.html" class="brand" aria-label="GridPlayer for Mac 支持首页">
-        <img src="favicon.png" alt="GridPlayer 图标">
+      <a href="support-mac.html" class="brand" aria-label="GridPlayer for Mac support home">
+        <img src="favicon.png" alt="GridPlayer icon">
         <span>
           <strong>GridPlayer for Mac</strong>
-          <small>个人音乐资料库播放器</small>
+          <small>Personal Music Library Player</small>
         </span>
       </a>
-      <nav aria-label="法律与支持页面导航">
-        <a href="privacy-mac.html">隐私政策</a>
-        <a href="terms-mac.html">用户协议</a>
-        <a href="support-mac.html" aria-current="page">技术支持</a>
-      </nav>
+      <div class="language-tools">
+        <nav aria-label="Legal and support pages">
+          <a href="privacy-mac.html">Privacy</a>
+          <a href="terms-mac.html">Terms</a>
+          <a href="support-mac.html" aria-current="page">Support</a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Language">
+          <button type="button" data-language-button="en" aria-pressed="true">English</button>
+          <button type="button" data-language-button="zh-Hans" aria-pressed="false">简体中文</button>
+        </div>
+      </div>
     </header>
   </div>
 
   <main>
-    <header class="hero">
-      <h1>GridPlayer for Mac 技术支持</h1>
-      <p class="muted">Support and frequently asked questions</p>
-    </header>
+    <article class="language-panel" data-language-panel="en" lang="en">
+      <header class="hero"><h1>GridPlayer for Mac Support</h1><p class="muted">Help, troubleshooting, and contact information</p></header>
+      <section><h2>Contact Support</h2><p>For support, bug reports, feedback, or feature requests, email:</p><p class="contact"><a href="mailto:support@gridnet.top">support@gridnet.top</a></p><p>You can also submit an issue through <a href="https://github.com/garycny/GridPlayerMac/issues">GitHub Issues</a>. We will respond as soon as reasonably possible.</p></section>
+      <section><h2>System Requirements</h2><ul><li>macOS 15.0 or later;</li><li>Apple Silicon and Intel Macs are supported;</li><li>A reachable Navidrome or compatible Subsonic service is required only when you connect a personal music server.</li></ul></section>
+      <section><h2>Supported Music Sources</h2><ul><li>One or more local music folders selected through the macOS file picker;</li><li>Personal Navidrome servers;</li><li>Compatible Subsonic servers.</li></ul><p>GridPlayer does not provide music or a developer-hosted music server.</p></section>
+      <section><h2>Frequently Asked Questions</h2>
+        <h3>GridPlayer cannot find my local music</h3><p>Open Music Sources and select the root music folder again. Confirm that macOS still allows GridPlayer to access it. GridPlayer reads only folders you select and does not modify or delete original music files.</p>
+        <h3>My personal music server will not connect</h3><p>Check the server address, username, and password, and prefer HTTPS. The server must be reachable from this Mac. Plain HTTP is allowed only for local or private-network addresses, and GridPlayer warns before connecting without encryption.</p>
+        <h3>Artwork or lyrics have not refreshed</h3><p>Clear the artwork or lyrics cache from Storage. GridPlayer retrieves rebuildable content again the next time it is needed.</p>
+        <h3>Apple Music artist artwork matching is unavailable</h3><p>Artist artwork matching is optional and off by default. Enable it from Library Settings, then allow Media &amp; Apple Music access when prompted. This feature sends limited artist, song, album, or manually entered search terms to the Apple Music catalog; it never uploads music files or server credentials.</p>
+        <h3>How do I remove local app data?</h3><p>Remove music sources and clear caches in the app. You can also use the app’s delete-all-data option. After uninstalling, any remaining GridPlayer Application Support, Caches, and corresponding macOS Keychain items can be removed manually. These actions do not delete original music files.</p>
+      </section>
+      <section><h2>What to Include in a Report</h2><ul><li>Your macOS version and Mac chip type;</li><li>The GridPlayer version and build number;</li><li>The steps immediately before the issue occurred;</li><li>A screenshot or error message with server addresses, usernames, file paths, and other personal information removed.</li></ul><p>Never send a music-server password, access token, or unredacted library data.</p></section>
+      <section><h2>Privacy and Terms</h2><p><a href="privacy-mac.html">Read the GridPlayer for Mac Privacy Policy</a></p><p><a href="terms-mac.html">Read the GridPlayer for Mac Terms of Use</a></p></section>
+    </article>
 
-    <section>
-      <h2>联系支持</h2>
-      <p>如需报告问题、提供反馈或提出功能建议，请发送邮件：</p>
-      <p class="contact"><a href="mailto:support@gridnet.top">support@gridnet.top</a></p>
-      <p>也可以前往 <a href="https://github.com/garycny/GridPlayerMac/issues">GitHub Issues</a> 提交问题，我们会尽快回复。</p>
-      <p class="muted">For support, bug reports, or feature requests, email support@gridnet.top. English messages are welcome.</p>
-    </section>
-
-    <section>
-      <h2>系统要求</h2>
-      <ul>
-        <li>macOS 15.0 或更高版本；</li>
-        <li>支持 Apple Silicon 与 Intel Mac；</li>
-        <li>连接个人服务器时，需要可访问的 Navidrome 或兼容 Subsonic 服务。</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>常见问题</h2>
-
-      <h3>找不到本地音乐</h3>
-      <p>请在“音乐源”中重新选择音乐根目录，并确认 macOS 仍允许 GridPlayer 访问该目录。GridPlayer 只读取用户选择的目录，不会修改或删除原始音乐文件。</p>
-
-      <h3>个人音乐服务器无法连接</h3>
-      <p>请检查服务器地址、用户名和密码，并优先使用 HTTPS。服务器需要能从当前 Mac 所在的网络访问；公网地址不允许使用明文 HTTP。</p>
-
-      <h3>封面或歌词没有更新</h3>
-      <p>可以在“存储管理”中清除封面或歌词缓存。GridPlayer 会在下次需要时重新获取相关内容。</p>
-
-      <h3>如何完全移除本地数据</h3>
-      <p>先在应用中移除音乐源并清除缓存。卸载应用后，还可以删除 GridPlayer 的 Application Support、Caches 数据和对应的 macOS 钥匙串项目。</p>
-    </section>
-
-    <section>
-      <h2>提交问题时请提供</h2>
-      <ul>
-        <li>macOS 版本和 Mac 芯片类型；</li>
-        <li>GridPlayer 版本与构建号；</li>
-        <li>问题出现前的操作步骤；</li>
-        <li>已经隐去服务器地址、用户名、文件路径等个人信息的截图或错误信息。</li>
-      </ul>
-      <p>请不要发送音乐服务器密码、访问令牌或未经脱敏的资料库数据。</p>
-    </section>
-
-    <section>
-      <h2>隐私与条款</h2>
-      <p><a href="privacy-mac.html">查看 GridPlayer for Mac 隐私政策</a></p>
-      <p><a href="terms-mac.html">查看 GridPlayer for Mac 用户协议</a></p>
-    </section>
+    <article class="language-panel" data-language-panel="zh-Hans" lang="zh-Hans" hidden>
+      <header class="hero"><h1>GridPlayer for Mac 技术支持</h1><p class="muted">帮助、故障排查与联系方式</p></header>
+      <section><h2>联系支持</h2><p>如需技术支持、报告问题、提供反馈或提出功能建议，请发送邮件：</p><p class="contact"><a href="mailto:support@gridnet.top">support@gridnet.top</a></p><p>也可以前往 <a href="https://github.com/garycny/GridPlayerMac/issues">GitHub Issues</a> 提交问题，我们会尽快回复。</p></section>
+      <section><h2>系统要求</h2><ul><li>macOS 15.0 或更高版本；</li><li>支持 Apple Silicon 与 Intel Mac；</li><li>只有连接个人音乐服务器时，才需要可访问的 Navidrome 或兼容 Subsonic 服务。</li></ul></section>
+      <section><h2>支持的音乐源</h2><ul><li>通过 macOS 文件选择器添加的一个或多个本地音乐目录；</li><li>个人 Navidrome 服务器；</li><li>兼容的 Subsonic 服务器。</li></ul><p>GridPlayer 不提供音乐内容，也不提供开发者托管的音乐服务器。</p></section>
+      <section><h2>常见问题</h2>
+        <h3>找不到本地音乐</h3><p>请打开“音乐源”，重新选择音乐根目录，并确认 macOS 仍允许 GridPlayer 访问该目录。GridPlayer 只读取用户选择的目录，不会修改或删除原始音乐文件。</p>
+        <h3>个人音乐服务器无法连接</h3><p>请检查服务器地址、用户名和密码，并优先使用 HTTPS。服务器必须能从当前 Mac 访问。只有本地或私有网络地址可以使用明文 HTTP，并且 GridPlayer 会在未加密连接前显示警告。</p>
+        <h3>封面或歌词没有更新</h3><p>可以在“存储管理”中清除封面或歌词缓存。GridPlayer 会在下次需要时重新获取这些可重建内容。</p>
+        <h3>Apple Music 艺术家头像匹配不可用</h3><p>艺术家头像匹配是默认关闭的可选功能。请在“资料库设置”中开启，并在提示时允许媒体与 Apple Music 访问。该功能只会向 Apple Music 目录发送有限的艺术家、歌曲、专辑或手动输入的搜索词，不会上传音乐文件或服务器凭据。</p>
+        <h3>如何完全移除本地数据</h3><p>请在应用中移除音乐源并清除缓存，也可以使用应用内“删除全部应用数据”功能。卸载后，还可以手动删除 GridPlayer 的 Application Support、Caches 数据和对应的 macOS 钥匙串项目。这些操作不会删除原始音乐文件。</p>
+      </section>
+      <section><h2>提交问题时请提供</h2><ul><li>macOS 版本和 Mac 芯片类型；</li><li>GridPlayer 版本与构建号；</li><li>问题出现前的操作步骤；</li><li>已经隐去服务器地址、用户名、文件路径等个人信息的截图或错误信息。</li></ul><p>请不要发送音乐服务器密码、访问令牌或未经脱敏的资料库数据。</p></section>
+      <section><h2>隐私与条款</h2><p><a href="privacy-mac.html">查看 GridPlayer for Mac 隐私政策</a></p><p><a href="terms-mac.html">查看 GridPlayer for Mac 用户协议</a></p></section>
+    </article>
   </main>
+  <script>
+    (() => {
+      const key = "gridplayer-mac-site-language";
+      const buttons = [...document.querySelectorAll("[data-language-button]")];
+      const panels = [...document.querySelectorAll("[data-language-panel]")];
+      const select = language => {
+        panels.forEach(panel => { panel.hidden = panel.dataset.languagePanel !== language; });
+        buttons.forEach(button => { button.setAttribute("aria-pressed", String(button.dataset.languageButton === language)); });
+        document.documentElement.lang = language;
+        try { localStorage.setItem(key, language); } catch (_) {}
+      };
+      buttons.forEach(button => button.addEventListener("click", () => select(button.dataset.languageButton)));
+      let saved;
+      try { saved = localStorage.getItem(key); } catch (_) {}
+      select(saved === "zh-Hans" || saved === "en" ? saved : (navigator.language.toLowerCase().startsWith("zh") ? "zh-Hans" : "en"));
+    })();
+  </script>
 </body>
 </html>
